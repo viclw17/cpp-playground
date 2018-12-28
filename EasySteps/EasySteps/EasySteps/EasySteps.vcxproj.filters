@@ -18,8 +18,5 @@
     <ClCompile Include="chp1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="chp10.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 
-#define TEST 1
+#define TEST 2
 // 0 vector array
 // 1 constants
 
@@ -43,6 +43,21 @@ int main() {
 	charge neutral = NEGATIVE, live = POSITIVE;
 	cout << "Neutral wire : " << neutral << endl;
 	cout << "Live wire : " << live << endl;
+#elif TEST == 2
+	int a = 8, b = 4;
+	cout << "Addition result : " << (a + b) << endl;
+	cout << "Subtraction result : " << (a - b) << endl;
+	cout << "Multiplication result : " << (a * b) << endl;
+	cout << "Division result : " << (a / b) << endl;
+	cout << "Modulus result : " << (a % b) << endl;
+
+	cout << "Postfx increment : " << a++ << endl;
+	cout << "Postfx result : " << a << endl;
+	cout << "Prefx increment : " << ++b << endl;
+	cout << "Prefx result : " << b << endl;
+
+	long int test;
+	cout << sizeof test << endl;
 #endif
 	return 0;
 }
