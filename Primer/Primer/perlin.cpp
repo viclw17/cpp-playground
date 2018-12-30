@@ -6,8 +6,6 @@ using namespace std;
 
 #define M_PI 3.1416
 
-ofstream outfile("render.ppm", ios_base::out);
-
 static int const _size = 256;
 static int const mask = _size - 1;
 int perm[_size];
@@ -52,6 +50,7 @@ int main() {
 
 	const int dimension = 1000;
 
+	ofstream outfile("render.pgm", ios_base::out);
 	outfile << "P2\n" << dimension << " " << dimension << "\n255\n";
 
 	int space = 50; // 1000/50 = 20
@@ -65,14 +64,16 @@ int main() {
 			// typical noise
 			n = noise(x, y); // (-1,1)
 			n = (n + 1.0) / 2.0; // bias and scale to (0,1)
-			//c = 128 + 128 * c; // wrong!
+			//n = 128 + 128 * n; // not wrong though. :)
 
 			// wood noise
 			//n = 20 * noise(x, y);
 			//n = n - floor(n);
 
 			// Map the values to the [0, 255] interval
+			// color value has to be int!
 			float color = floor(n * 255); // have to be int!
+			//color = int(n); // this works the same as floor!
 
 			outfile << color << " ";
 			//cout << n << " ";
