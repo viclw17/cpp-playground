@@ -44,25 +44,21 @@ float noise(float x, float y) {
 	return result;
 }
 
-int main() {
-
+/*int main() {
 	init();
-
 	const int dimension = 1000;
 
 	ofstream outfile("render.pgm", ios_base::out);
 	outfile << "P2\n" << dimension << " " << dimension << "\n255\n";
 
 	int space = 50; // 1000/50 = 20
-
 	for (int j = 0; j < dimension; j++) {
 		float y = (float)j / ((float)space); // cast to float!!!
 		for (int i = 0; i < dimension; i++) {
 			float x = (float)i / ((float)space);
 
-			float n;
 			// typical noise
-			n = noise(x, y); // (-1,1)
+			float n = noise(x, y); // (-1,1)
 			n = (n + 1.0) / 2.0; // bias and scale to (0,1)
 			//n = 128 + 128 * n; // not wrong though. :)
 
@@ -74,12 +70,10 @@ int main() {
 			// color value has to be int!
 			float color = floor(n * 255); // have to be int!
 			//color = int(n); // this works the same as floor!
-
 			outfile << color << " ";
-			//cout << n << " ";
 		}
 		outfile << "\n";
-		//cout << "\n";
 	}
 	return 0;
-}
+}*/
+
