@@ -7,7 +7,7 @@ using namespace std;
 void shuffle(int[], int);
 void printArray(int[], int);
 
-int main() {
+//int main() {
 	// simple sum of 1-10
 	/*int sum = 0, var = 1;
 	while (var <= 10) {
@@ -50,6 +50,7 @@ int main() {
 		printArray(arr, n);
 	}*/
 
+	/*// understant c++ mod and mathematic modulo
 	int a = (-1) % 256; // % is different from modulo!
 	// -1 MOD 256 = 255, is according to Euclidean Division
 	// if -1 / 256, then quotient q is -1 and remainder r is 255,
@@ -58,10 +59,10 @@ int main() {
 	unsigned char b;
 	cout << "unsigned char is " << sizeof(b) << " byte" << endl;
 	b = -1;
-	cout << (int)b << endl;
+	cout << (int)b << endl;*/
 	
-	return 0;
-}
+	//return 0;
+//}
 
 
 void shuffle(int arr[], int n) {

@@ -44,7 +44,7 @@ float noise(float x, float y) {
 	return result;
 }
 
-/*int main() {
+int main() {
 	init();
 	const int dimension = 1000;
 
@@ -75,5 +75,5 @@ float noise(float x, float y) {
 		outfile << "\n";
 	}
 	return 0;
-}*/
+}
 
