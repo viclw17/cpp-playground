@@ -130,6 +130,7 @@ int main() {
 	r = &i;
 	*r = 0;*/
 
+	// const
 	
 
 	return 0;
