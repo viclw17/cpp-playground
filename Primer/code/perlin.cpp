@@ -54,44 +54,44 @@ float noise(float x, float y) {
 }
 
 
-//int main() {
-//	init();
-//	const int dimension = 100;
-//
-//	ofstream outfile("render.pgm", ios_base::out);
-//	outfile << "P2\n" << dimension << " " << dimension << "\n255\n";
-//
-//	int lattice = 10;
-//	int space = dimension / float(lattice);
-//	for (int j = 0; j < dimension; j++) {
-//		float y = (float)j / ((float)space); // cast to float!!!
-//		for (int i = 0; i < dimension; i++) {
-//			float x = (float)i / ((float)space);
-//
-//			float n;
-//			if (i % 10 == 0 || j % 10 == 0 /*|| i == dimension-1 || j == dimension-1*/) {
-//				n = 0;
-//				//n = noise(x, y);
-//				//n = (n + 1.0)*.5;
-//			}
-//			else {
-//				// typical noise
-//				n = noise(x, y); // (-1,1)
-//				n = (n + 1.0)*.5; // bias and scale to (0,1)
-//				//n = 128 + 128 * n; // not wrong though. :)
-//			}
-//
-//			// wood noise
-//			//n = 20 * noise(x, y);
-//			//n = n - floor(n);
-//
-//			// Map the values to the [0, 255] interval
-//			// color value has to be int!
-//			float color = floor(n * 255); // have to be int!
-//			//color = int(n); // this works the same as floor!
-//			outfile << color << " ";
-//		}
-//		outfile << "\n";
-//	}
-//	return 0;
-//}
+int main() {
+    init();
+    const int dimension = 100;
+
+    ofstream outfile("render.pgm", ios_base::out);
+    outfile << "P2\n" << dimension << " " << dimension << "\n255\n";
+
+    int lattice = 10;
+    int space = dimension / float(lattice);
+    for (int j = 0; j < dimension; j++) {
+        float y = (float)j / ((float)space); // cast to float!!!
+        for (int i = 0; i < dimension; i++) {
+            float x = (float)i / ((float)space);
+
+            float n;
+            if (i % 10 == 0 || j % 10 == 0 /*|| i == dimension-1 || j == dimension-1*/) {
+                n = 0;
+                //n = noise(x, y);
+                //n = (n + 1.0)*.5;
+            }
+            else {
+                // typical noise
+                n = noise(x, y); // (-1,1)
+                n = (n + 1.0)*.5; // bias and scale to (0,1)
+                //n = 128 + 128 * n; // not wrong though. :)
+            }
+
+            // wood noise
+            //n = 20 * noise(x, y);
+            //n = n - floor(n);
+
+            // Map the values to the [0, 255] interval
+            // color value has to be int!
+            float color = floor(n * 255); // have to be int!
+            //color = int(n); // this works the same as floor!
+            outfile << color << " ";
+        }
+        outfile << "\n";
+    }
+    return 0;
+}
