@@ -8,6 +8,7 @@
 
 #include <iostream>
 #include <cstdlib>
+// containers
 #include <vector>
 #include <unordered_map>
 using namespace std;
@@ -125,7 +126,7 @@ void printArrayFull(vector<int>& arr){
 
 //----------------------------------------
 string reverseString(string s) {
-    int i = 0, j = s.size() - 1;
+    int i = 0, j = int(s.size()) - 1;
     while(i < j){
         swap(s[i++], s[j--]);
     }
@@ -135,7 +136,7 @@ string reverseString(string s) {
 
 // Move Zeroes Solution 1: Staightforward
 void moveZeroesS1(vector<int>& nums){
-    int n = nums.size();
+    int n = int(nums.size());
     int numZeroes = 0;
     for (int i=0; i<n; i++) {
         numZeroes+=(nums[i]==0);
@@ -183,7 +184,7 @@ void moveZeroesS3(vector<int>& nums) {
 
 // Majority Element S1: Brute Force
 int majorityElementS1(vector<int>& nums) {
-    int majorityCount = nums.size()/2;
+    int majorityCount = int(nums.size()/2);
     int count = 0;
     for(int i=0; i<nums.size(); i++){
         count = 0; // reset counter!
@@ -200,7 +201,7 @@ int majorityElementS1(vector<int>& nums) {
 // Majority Element S2: Hash Table
 int majorityElementS2(vector<int>& nums) {
     unordered_map<int,int> counts;
-    int n = nums.size();
+    int n = int(nums.size());
     for(int i=0; i<n; i++){
         if(++counts[nums[i]]>n/2)
             return nums[i];
@@ -213,7 +214,7 @@ bool isAnagram(string s, string t) {
         cout << "is NOT Anagram" << endl;
         return false;
     }
-    int length = s.length();
+    int length = int(s.length());
     char* str1 = new char[length+1];
     char* str2 = new char[length+1];
     strcpy(str1, s.c_str());
@@ -232,7 +233,7 @@ bool isAnagram(string s, string t) {
 
 bool isAnagramS2(string s, string t) {
     if (s.length() != t.length()) return false;
-    int n = s.length();
+    int n = int(s.length());
     unordered_map<char, int> counts;
     for (int i = 0; i < n; i++) {
         counts[s[i]]++;
@@ -251,6 +252,28 @@ bool isAnagramS3(string s, string t) {
     sort(s.begin(), s.end());
     sort(t.begin(), t.end());
     return s == t;
+}
+
+//bool containsDuplicate(vector<int>& nums) {
+//    for (int i = 0; i < nums.size(); ++i) {
+//        for (int j = 0; j < i; ++j) {
+//            if (nums[j] == nums[i]) return true;
+//        }
+//    }
+//    return false;
+//}
+
+void insertionSort(vector<int>& input){
+    for (int j=0; j<input.size(); j++) {
+        int key = input[j];
+        int i = j-1;
+        while (i>=0 && input[i]>key) {
+            input[i+1]=input[i];
+            i=i-1;
+        }
+        input[i+1]=key;
+    }
+    printArrayFull(input);
 }
 
 int main(int argc, const char * argv[]) {
@@ -292,11 +315,15 @@ int main(int argc, const char * argv[]) {
 //    cout << majorityElementS1(numsME)<< endl;
 //    cout << majorityElementS2(numsME)<< endl;
 
-    cout << "----------" << endl;
-    cout << "Valid Anagram: " << endl;
-    string s = "art", t = "rat";
+//    cout << "----------" << endl;
+//    cout << "Valid Anagram: " << endl;
+//    string s = "art", t = "rat";
 //    isAnagram(s,t);
-    isAnagramS2(s, t);
+//    isAnagramS2(s, t);
+    
+    vector<int> nums = {5,2,4,6,1,3};
+    printArrayFull(nums);
+    insertionSort(nums);
     
     
     // PLAY!!!
