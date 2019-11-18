@@ -1,0 +1,197 @@
+<!-- From http://eastfarthing.com/blog/2015-04-21-noise/, js implementation. -->
+<html>
+<body>
+    <script type="text/javascript">
+      // Hi!  This post has my first pieces of JavaScript in years, and my
+      // first use of the <canvas> tag, period.  If anything in here looks
+      // strange, unidiomatic, or buggy... well, you've been warned!
+      function drawFunction( ctx,
+                             pixMinX, pixMinY, pixMaxX, pixMaxY,
+                             domMinX, domMinY, domMaxX, domMaxY, // 0 0 1 1
+                             fn ) {
+        var pixSpanX = pixMaxX - pixMinX;
+        var pixSpanY = pixMaxY - pixMinY;
+        var pixToDomX = ( domMaxX - domMinX ) * 1.0 / pixSpanX;
+        var pixToDomY = ( domMaxY - domMinY ) * 1.0 / pixSpanY;
+        var pixels = ctx.createImageData( pixSpanX, pixSpanY );
+        var index = 0;
+        for ( var pixY = 0; pixY < pixSpanY; ++pixY ) {
+          var domY = pixY * pixToDomY + domMinY;
+          for ( var pixX = 0; pixX < pixSpanX; ++pixX ) {
+            var domX = pixX * pixToDomX + domMinX;
+            var value = Math.max( Math.min( fn( domX, domY ), 1.0 ), -1.0 );
+            var grey = 128 + 126 * value | 0;
+            pixels.data[ index++ ] = grey;
+            pixels.data[ index++ ] = grey;
+            pixels.data[ index++ ] = grey;
+            pixels.data[ index++ ] = 255;
+          }
+        }
+        ctx.putImageData( pixels, pixMinX, pixMinY );
+      }
+
+      // function drawGrid( ctx,
+      //                    pixMinX, pixMinY, pixMaxX, pixMaxY,
+      //                    space ) {
+      //   ctx.strokeStyle = "#600a34";
+      //   ctx.beginPath();
+      //   for ( var pixX = pixMinX; pixX <= pixMaxX; pixX += space ) {
+      //     ctx.moveTo( pixX, pixMinY );
+      //     ctx.lineTo( pixX, pixMaxY );
+      //   }
+      //   for ( var pixY = pixMinY; pixY <= pixMaxY; pixY += space ) {
+      //     ctx.moveTo( pixMinX, pixY );
+      //     ctx.lineTo( pixMaxX, pixY );
+      //   }
+      //   ctx.stroke();
+      // }
+
+      // function drawArrow( ctx,
+      //                     fromX, fromY,
+      //                     toX, toY ) {
+      //   var dirX = toX - fromX;
+      //   var dirY = toY - fromY;
+      //   var dirLen = Math.max( Math.sqrt( dirX * dirX + dirY * dirY ), 1.0e-6 );
+      //   dirX /= dirLen;
+      //   dirY /= dirLen;
+      //   var tailWidth = 3.0;
+      //   var headWidth = 8.0;
+      //   var headLength = 6.0;
+      //   ctx.fillStyle = "#FFF";
+      //   ctx.strokeStyle = "#000";
+      //   ctx.beginPath();
+      //   ctx.moveTo( fromX + dirY * tailWidth * 0.5,
+      //               fromY - dirX * tailWidth * 0.5 );
+      //   ctx.lineTo( toX - dirX * headLength + dirY * tailWidth * 0.5,
+      //               toY - dirY * headLength - dirX * tailWidth * 0.5 );
+      //   ctx.lineTo( toX - dirX * headLength + dirY * headWidth * 0.5,
+      //               toY - dirY * headLength - dirX * headWidth * 0.5 );
+      //   ctx.lineTo( toX, toY );
+      //   ctx.lineTo( toX - dirX * headLength - dirY * headWidth * 0.5,
+      //               toY - dirY * headLength + dirX * headWidth * 0.5 );
+      //   ctx.lineTo( toX - dirX * headLength - dirY * tailWidth * 0.5,
+      //               toY - dirY * headLength + dirX * tailWidth * 0.5 );
+      //   ctx.lineTo( fromX - dirY * tailWidth * 0.5,
+      //               fromY + dirX * tailWidth * 0.5 );
+      //   ctx.closePath();
+      //   ctx.fill();
+      //   ctx.stroke();
+      //}
+
+      //drawNoise( ctx, 0, 0, fig.width, fig.height, space, gradsX, gradsY );
+      function drawNoise( ctx,
+                          pixMinX, pixMinY, pixMaxX, pixMaxY,
+                          space, gradsX, gradsY ) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.moveTo( pixMinX, pixMinY );
+        ctx.lineTo( pixMaxX, pixMinY );
+        ctx.lineTo( pixMaxX, pixMaxY );
+        ctx.lineTo( pixMinX, pixMaxY );
+        ctx.clip();
+        var cellMinX = Math.floor( pixMinX * 1.0 / space );
+        var cellMinY = Math.floor( pixMinY * 1.0 / space );
+        var cellMaxX = Math.ceil( pixMaxX * 1.0 / space );
+        var cellMaxY = Math.ceil( pixMaxY * 1.0 / space );
+        for ( var cellY = cellMinY; cellY < cellMaxY; ++cellY )
+          for ( var cellX = cellMinX; cellX < cellMaxX; ++cellX ) {
+            var pixX = cellX * space;
+            var pixY = cellY * space;
+            var gradX00 = gradsX[ cellY + 0 ][ cellX + 0 ];
+            var gradY00 = gradsY[ cellY + 0 ][ cellX + 0 ];
+            var gradX10 = gradsX[ cellY + 0 ][ cellX + 1 ];
+            var gradY10 = gradsY[ cellY + 0 ][ cellX + 1 ];
+            var gradX01 = gradsX[ cellY + 1 ][ cellX + 0 ];
+            var gradY01 = gradsY[ cellY + 1 ][ cellX + 0 ];
+            var gradX11 = gradsX[ cellY + 1 ][ cellX + 1 ];
+            var gradY11 = gradsY[ cellY + 1 ][ cellX + 1 ];
+            drawFunction(
+              ctx,
+              pixX, pixY, pixX + space, pixY + space,
+              0.0, 0.0, 1.0, 1.0,
+              // falloff function
+              function( x, y ) {
+                var fadeX1 = ( 3.0 - 2.0 * x ) * x * x;
+                var fadeY1 = ( 3.0 - 2.0 * y ) * y * y;
+                var fadeX0 = 1.0 - fadeX1;
+                var fadeY0 = 1.0 - fadeY1;
+                var x0 = x;
+                var x1 = x - 1.0;
+                var y0 = y;
+                var y1 = y - 1.0;
+                return ( x0 * gradX00 + y0 * gradY00 ) * fadeX0 * fadeY0 +
+                       ( x1 * gradX10 + y0 * gradY10 ) * fadeX1 * fadeY0 +
+                       ( x0 * gradX01 + y1 * gradY01 ) * fadeX0 * fadeY1 +
+                       ( x1 * gradX11 + y1 * gradY11 ) * fadeX1 * fadeY1; } );
+          }
+
+        // drawGrid( ctx,
+        //           cellMinX * space, cellMinY * space,
+        //           cellMaxX * space, cellMaxY * space,
+        //           space );
+        //
+        // for ( var cellY = cellMinY; cellY <= cellMaxY; ++cellY )
+        //   for ( var cellX = cellMinX; cellX <= cellMaxX; ++cellX ) {
+        //       drawArrow( ctx,
+        //                  cellX * space,
+        //                  cellY * space,
+        //                  ( cellX + gradsX[ cellY ][ cellX ] ) * space,
+        //                  ( cellY + gradsY[ cellY ][ cellX ] ) * space );
+        //   }
+
+        ctx.restore();
+        }
+
+    </script>
+
+
+<canvas id="fig4" width="480" height="480" style="margin: 1.5rem auto"></canvas>
+<script type="text/javascript">
+  window.addEventListener( "load", function( event ) {
+    var fig = document.getElementById( "fig4" );
+    var ctx = fig.getContext( "2d" );
+    var space = 60;
+    var gradsX = [];
+    var gradsY = [];
+    var cellsX = fig.width / space;
+    var cellsY = fig.height / space;
+
+    // init
+    for ( var cellY = 0; cellY <= cellsY; ++cellY ) {
+      gradsX[ cellY ] = [];
+      gradsY[ cellY ] = [];
+      for ( var cellX = 0; cellX <= cellsX; ++cellX ) {
+        var dir = Math.random() * 2.0 * Math.PI;
+        gradsX[ cellY ][ cellX ] = Math.cos( dir );
+        gradsY[ cellY ][ cellX ] = Math.sin( dir );
+      }
+    }
+
+    drawNoise( ctx, 0, 0, fig.width, fig.height,space, gradsX, gradsY );
+
+    // function mouse( event ) {
+    //   var x = event.clientX - fig.getBoundingClientRect().left;
+    //   var y = event.clientY - fig.getBoundingClientRect().top;
+    //   var cellX = Math.round( x * 1.0 / space );
+    //   var cellY = Math.round( y * 1.0 / space );
+    //   var gradX = x - cellX * space;
+    //   var gradY = y - cellY * space;
+    //   var gradLen = Math.max( Math.sqrt( gradX * gradX + gradY * gradY ), 1.0e-6 );
+    //   gradsX[ cellY ][ cellX ] = gradX / gradLen;
+    //   gradsY[ cellY ][ cellX ] = gradY / gradLen;
+    //   drawNoise( ctx,
+    //              Math.max( ( cellX - 1 ) * space, 0 ),
+    //              Math.max( ( cellY - 1 ) * space, 0 ),
+    //              Math.min( ( cellX + 1 ) * space, fig.width ),
+    //              Math.min( ( cellY + 1 ) * space, fig.height ),
+    //              space, gradsX, gradsY );
+    // }
+
+    // fig.addEventListener( "mousedown", mouse, true );
+    // fig.addEventListener( "mousemove", function( event ) {if ( event.buttons ) mouse( event );}, true );
+
+}); // window
+
+</script>
+</body>
+</html>

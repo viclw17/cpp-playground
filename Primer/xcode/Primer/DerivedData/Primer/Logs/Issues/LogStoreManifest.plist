@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>37CC4DBF-4FCB-43D7-BE55-51CD3EEDF0D9</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
+			<key>fileName</key>
+			<string>37CC4DBF-4FCB-43D7-BE55-51CD3EEDF0D9.xcactivitylog</string>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>signature</key>
+			<string>Perlin-bbypxnraagolqmairpfvebhnmgyw</string>
+			<key>timeStartedRecording</key>
+			<real>584241022.42983103</real>
+			<key>timeStoppedRecording</key>
+			<real>584241023.1142</real>
+			<key>title</key>
+			<string>Build target Perlin</string>
+			<key>uniqueIdentifier</key>
+			<string>37CC4DBF-4FCB-43D7-BE55-51CD3EEDF0D9</string>
+		</dict>
+		<key>75996440-605A-4D7E-9344-1553A111D499</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
+			<key>fileName</key>
+			<string>75996440-605A-4D7E-9344-1553A111D499.xcactivitylog</string>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>signature</key>
+			<string>Primer-bbypxnraagolqmairpfvebhnmgyw</string>
+			<key>timeStartedRecording</key>
+			<real>584241176.52131498</real>
+			<key>timeStoppedRecording</key>
+			<real>584241177.49660802</real>
+			<key>title</key>
+			<string>Build target Primer</string>
+			<key>uniqueIdentifier</key>
+			<string>75996440-605A-4D7E-9344-1553A111D499</string>
+		</dict>
+	</dict>
+	<key>preserveOldLogs</key>
+	<true/>
+</dict>
+</plist>
