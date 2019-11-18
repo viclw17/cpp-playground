@@ -7,7 +7,7 @@ using namespace std;
 void shuffle(int[], int);
 void printArray(int[], int);
 
-//int main() {
+int main() {
 	// simple sum of 1-10
 	/*int sum = 0, var = 1;
 	while (var <= 10) {
@@ -42,13 +42,13 @@ void printArray(int[], int);
 	
 	// Fisher–Yates shuffle
 	// https://www.geeksforgeeks.org/shuffle-a-given-array-using-fisher-yates-shuffle-algorithm/
-	/*int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+	int arr[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
 	int n = sizeof(arr) / sizeof(arr[0]);
 	int i = 10;
 	while (i-- > 0) {
 		shuffle(arr, n);
 		printArray(arr, n);
-	}*/
+	}
 
 	/*// understand c++ mod and mathematic modulo
 	int a = (-1) % 256; // % is different from modulo!
@@ -134,8 +134,8 @@ void printArray(int[], int);
 	// to do...
 	
 
-//	return 0;
-//}
+	return 0;
+}
 
 void shuffle(int arr[], int n) {
 	srand(time(NULL));

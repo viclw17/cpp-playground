@@ -53,8 +53,8 @@ float noise(float x, float y) {
 	return result;
 }
 
-/**/
-int main() {
+
+int main2() {
 	init();
 	const int dimension = 100;
 

@@ -1,15 +1,15 @@
-class person{
-private:
-	int age;
-public:
-	person(int a){
-		this->age=a;		
-	}
-	inline bool operator == (const person &ps) const;
+class Person{
+	private:
+		int age;
+	public:
+		Person(int a){
+			this->age = a; // access member variable via pointer		
+		}
+		inline bool operator == (const Person& ps) const;
 };
 
-inline bool person::operator == (const person &ps) const{
-	if(this->age==ps.age)
+inline bool Person::operator == (const Person& ps) const{
+	if(this->age == ps.age)
 		return true;
 	return false;
 }
