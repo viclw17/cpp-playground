@@ -41,7 +41,7 @@ Upgrade pip as follows:
 _curl https://bootstrap.pypa.io/get-pip.py | python_
 Note: You may need to use sudo python above if not in a virtual environment.
 (Note that upgrading pip using pip i.e pip install --upgrade pip will also not upgrade it correctly. It's just a chicken-and-egg issue. pip won't work unless using TLS >= 1.2.)
-As mentioned in this[https://stackoverflow.com/questions/49748063/pip-install-fails-for-every-package-could-not-find-a-version-that-satisfies/49748494#49748494] detailed answer, this is due to the recent TLS deprecation for pip. Python.org sites have stopped support for TLS versions 1.0 and 1.1.
+As mentioned in [this detailed answer](https://stackoverflow.com/questions/49748063/pip-install-fails-for-every-package-could-not-find-a-version-that-satisfies/49748494#49748494), this is due to the recent TLS deprecation for pip. Python.org sites have stopped support for TLS versions 1.0 and 1.1.
 
 # PIL
 You can try using Pillow instead, which is a PIL fork:

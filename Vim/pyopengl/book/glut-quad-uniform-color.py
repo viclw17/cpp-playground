@@ -15,7 +15,8 @@ vertex_code = """
     void main(){ gl_Position = vec4(position, 0.0, 1.0); } """
 
 fragment_code = """
-    void main() { gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); } """
+    uniform vec4 color;
+    void main() { gl_FragColor = color; } """
 
 def display():
     gl.glClear(gl.GL_COLOR_BUFFER_BIT)
@@ -35,8 +36,8 @@ def keyboard( key, x, y ):
 glut.glutInit()
 glut.glutInitDisplayMode(glut.GLUT_DOUBLE | glut.GLUT_RGBA)
 glut.glutCreateWindow('Hello world!')
-#glut.glutReshapeWindow(512,512)
-#glut.glutReshapeFunc(reshape)
+glut.glutReshapeWindow(512,512)
+glut.glutReshapeFunc(reshape)
 glut.glutDisplayFunc(display)
 glut.glutKeyboardFunc(keyboard)
 
@@ -62,13 +63,13 @@ if not gl.glGetShaderiv(vertex, gl.GL_COMPILE_STATUS):
     error = gl.glGetShaderInfoLog(vertex).decode()
     print(error)
     raise RuntimeError("Shader compilation error")
-
-#gl.glCompileShader(fragment)
+                
+gl.glCompileShader(fragment)
 gl.glCompileShader(fragment)
 if not gl.glGetShaderiv(fragment, gl.GL_COMPILE_STATUS):
     error = gl.glGetShaderInfoLog(fragment).decode()
     print(error)
-    raise RuntimeError("Shader compilation error")
+    raise RuntimeError("Shader compilation error")                
 
 # Attach shader objects to the program
 gl.glAttachShader(program, vertex)
@@ -81,8 +82,8 @@ if not gl.glGetProgramiv(program, gl.GL_LINK_STATUS):
     raise RuntimeError('Linking error')
 
 # Get rid of shaders (no more needed)
-#gl.glDetachShader(program, vertex)
-#gl.glDetachShader(program, fragment)
+gl.glDetachShader(program, vertex)
+gl.glDetachShader(program, fragment)
 
 # Make program the default program
 gl.glUseProgram(program)
@@ -110,6 +111,13 @@ gl.glEnableVertexAttribArray(loc)
 gl.glBindBuffer(gl.GL_ARRAY_BUFFER, buffer)
 gl.glVertexAttribPointer(loc, 2, gl.GL_FLOAT, False, stride, offset)
 
+
+# Upload the uniform color
+# --------------------------------------
+loc = gl.glGetUniformLocation(program, "color")
+gl.glUniform4f(loc, 0.0, 0.0, 1.0, 1.0)
+
+   
 # Enter the mainloop
 # --------------------------------------
 glut.glutMainLoop()
