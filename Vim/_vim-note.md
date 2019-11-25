@@ -1,6 +1,8 @@
 this is my first file written in vim, after reading the vim-tutor
 gonna practise more!
 
+---
+
 :help user-manual
 ctrl-W ctrl-W to switch between windows.
 
