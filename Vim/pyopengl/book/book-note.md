@@ -50,3 +50,7 @@ Glumpy is organized around three main modules:
 # Basic Math
 
 # Render a cube
+
+
+os.open
+open
