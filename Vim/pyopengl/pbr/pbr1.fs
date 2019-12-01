@@ -1,9 +1,14 @@
 #version 330 core
 // out vec4 FragColor;
-varying vec2 TexCoords;
-varying vec3 WorldPos;
-varying vec3 PositionCS;
-varying vec3 Normal;
+
+// uniform mat4 model;
+// uniform mat4 view;
+// uniform mat4 normal;
+
+varying vec3 v_position; // WorldPos;
+varying vec2 v_texcoord; // TexCoords;
+varying vec3 v_normal;
+// varying vec3 PositionCS;
 
 // material parameters
 uniform sampler2D albedoMap;
@@ -16,17 +21,24 @@ uniform sampler2D aoMap;
 uniform vec3 lightPositions;
 uniform vec3 lightColors;
 
+// camera
 uniform vec3 camPos;
 
 const float PI = 3.14159265359;
+
+// https://stackoverflow.com/questions/14980712/how-to-get-flat-normals-on-a-cube
+// vec3 Normal = normalize(cross(dFdx(PositionCS), dFdy(PositionCS)));
+// vec3 Normal = normalize(normal * vec4(v_normal,1.0)).xyz;
+vec3 Normal = v_normal;
+vec3 WorldPos = v_position;
+vec2 TexCoords = v_texcoord;
+
+
 // ----------------------------------------------------------------------------
 // Easy trick to get tangent-normals to world-space to keep PBR code simplified.
 // Don't worry if you don't get what's going on; you generally want to do normal 
 // mapping the usual way for performance anways; I do plan make a note of this 
 // technique somewhere later in the normal mapping tutorial.
-
-// vec3 Normal = normalize(cross(dFdx(PositionCS), dFdy(PositionCS)));
-
 vec3 getNormalFromMap()
 {
     vec3 tangentNormal = texture2D(normalMap, TexCoords).xyz * 2.0 - 1.0;
@@ -101,8 +113,8 @@ void main()
 
     // reflectance equation
     vec3 Lo = vec3(0.0);
-    for(int i = 0; i < 10; ++i) 
-    {
+    // for(int i = 0; i < 1; ++i) 
+    // {
         // calculate per-light radiance
         vec3 L = normalize(lightPositions - WorldPos);
         vec3 H = normalize(V + L);
@@ -136,11 +148,11 @@ void main()
         // add to outgoing radiance Lo
         Lo += (kD * albedo / PI + specular) * radiance * NdotL;  
         // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
-    }   
+    // }   
     
     // ambient lighting (note that the next IBL tutorial will replace 
     // this ambient lighting with environment lighting).
-    vec3 ambient = vec3(0.03) * albedo * ao;
+    vec3 ambient = vec3(0.05) * albedo * ao; //0.03
     
     vec3 color = ambient + Lo;
 
@@ -149,6 +161,15 @@ void main()
     // gamma correct
     color = pow(color, vec3(1.0/2.2)); 
 
+    // color = albedo;
+    // color = vec3(metallic);
+    // color = vec3(roughness);
+    // color = vec3(DistributionGGX(N, H, roughness));
+    // color = vec3(GeometrySmith(N, V, L, roughness));
+    // color = fresnelSchlick(max(dot(H, V), 0.0), F0);
+    // color = specular;
+    // color = ambient;
     // color = Normal;
+    // color = Lo;
     gl_FragColor = vec4(color, 1.0);
 }

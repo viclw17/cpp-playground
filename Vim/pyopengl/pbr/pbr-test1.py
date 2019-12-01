@@ -1,56 +1,23 @@
 import numpy as np
 from PIL import Image
 from glumpy import app, gl, glm, gloo, data
+from glumpy.geometry import primitives
+from glumpy.transforms import Trackball, Position
+
+import cube
 
 vertex_shader = open('pbr1.vs').read()
 fragment_shader = open('pbr1.fs').read()
 
-def cube():
-    vtype = [('aPos', np.float32, 3),
-             ('aTexCoords', np.float32, 2),
-             ('aNormal', np.float32, 3)]
-    itype = np.uint32
-
-    # Vertices positions
-    p = np.array([[1, 1, 1], [-1, 1, 1], [-1, -1, 1], [1, -1, 1],
-                  [1, -1, -1], [1, 1, -1], [-1, 1, -1], [-1, -1, -1]],
-                 dtype=float)
-    # Texture coords
-    t = np.array([[0, 0], [0, 1], [1, 1], [1, 0]])
-    # Normal vectors
-    n = np.array([[1,0,0],[0,1,0],[0,0,1],[-1,0,0],[0,-1,0],[0,0,-1]],dtype=float) # +x +y +z -x -y -z
-
-    faces_p = [0, 1, 2, 3,  0, 3, 4, 5,   0, 5, 6, 1, # +z +x +y
-               1, 6, 7, 2,  7, 4, 3, 2,   4, 7, 6, 5] # -x -y -z
-    faces_t = [0, 1, 2, 3,  0, 1, 2, 3,   0, 1, 2, 3,
-               3, 2, 1, 0,  0, 1, 2, 3,   0, 1, 2, 3]
-    faces_n = [2, 2, 2, 2,  0, 0, 0, 0,   1, 1, 1, 1, 
-               3, 3, 3, 3,  4, 4, 4, 4,   5, 5, 5, 5]
-
-    vertices = np.zeros(24, vtype) # 4 vertex per face * 6
-    vertices['aPos'] = p[faces_p]
-    vertices['aTexCoords'] = t[faces_t]
-    vertices['aNormal'] = n[faces_n]
-
-    # print (vertices['aPos'])
-    # print (vertices['aTexCoords'])
-    # print (vertices['aNormal'])
-
-    filled = np.resize(np.array([0, 1, 2, 0, 2, 3], dtype=itype), 6 * (2 * 3))
-    # [0 1 2 0 2 3 0 1 2 0 2 3 0 1 2 0 2 3 0 1 2 0 2 3 0 1 2 0 2 3 0 1 2 0 2 3]
-    filled += np.repeat(4 * np.arange(6, dtype=itype), 6) # stride
-    # [ 0  0  0  0  0  0  4  4  4  4  4  4  8  8  8  8  8  8 12 12 12 12 12 12 16 16 16 16 16 16 20 20 20 20 20 20]
-    # [ 0  1  2  0  2  3  4  5  6  4  6  7  8  9 10  8 10 11 12 13 14 12 14 15 16 17 18 16 18 19 20 21 22 20 22 23]
-    V = vertices.view(gloo.VertexBuffer)
-    I = filled.view(gloo.IndexBuffer)
-    # print ('VertexBuffer stride: ' + str(V.stride))
-    # print ('VertexBuffer offset: ' + str(V.offset))
-    # print ('IndexBuffer stride: ' + str(I.stride))
-    # print ('IndexBuffer offset: ' + str(I.offset))
-    return V, I
-
-
 window = app.Window(width=1024, height=1024, color=(0,0,0,1))
+
+def update():
+    model = obj['transform']['model'].reshape(4,4)
+    view  = obj['transform']['view'].reshape(4,4)
+    obj['view']  = view
+    obj['model'] = model
+    # obj['normal'] = np.array(np.matrix(np.dot(view, model)).I.T)
+    pass
 
 @window.event
 def on_draw(dt):
@@ -58,44 +25,81 @@ def on_draw(dt):
     window.clear()
     gl.glDisable(gl.GL_BLEND)
     gl.glEnable(gl.GL_DEPTH_TEST)
-    cube.draw(gl.GL_TRIANGLES, I)
-
-    # Rotate cube
-    theta += 1.0 # degrees
-    phi += 1.0 # degrees
-    model = np.eye(4, dtype=np.float32)
-    glm.rotate(model, theta, 0, 0, 1)
-    glm.rotate(model, phi, 0, 1, 0)
-    # glm.rotate(model, theta, 1, 0, 0)
-    cube['model'] = model
+    obj.draw(gl.GL_TRIANGLES, I)
+    
+    # theta += 1 # degrees
+    # phi   += 1 # degrees
+    # model = np.eye(4, dtype=np.float32)
+    # # glm.rotate(model, theta, 0, 0, 1)
+    # glm.rotate(model, phi,   0, 1, 0)
+    # # glm.rotate(model, theta, 1, 0, 0)
+    # obj['model'] = model
 
 @window.event
 def on_resize(width, height):
-    cube['projection'] = glm.perspective(45.0, width / float(height), 2.0, 100.0)
+    obj['projection'] = glm.perspective(45.0, width / float(height), 2.0, 100.0)
+
+@window.event
+def on_mouse_drag(x, y, dx, dy, button):
+    update()
+    pass
 
 @window.event
 def on_init():
     gl.glEnable(gl.GL_DEPTH_TEST)
+    update()
+    pass
 
 
-V, I = cube()
-cube = gloo.Program(vertex_shader, fragment_shader)
-cube.bind(V)
+V, I = primitives.sphere() 
+# V, I = primitives.teapot() 
+# V, I = primitives.cube()
+# V, I = primitives.cubesphere()
+# V, I = primitives.tube() 
+# V, I = cube.cube()
+# V, I = data.get('teapot.obj')
+path = '/Users/wei_li/Git/cpp-playground/Vim/pyopengl/pbr/models/bunny.obj'
+# V, I = data.load(path)
 
-cube['albedoMap'] = np.array(Image.open("./textures/albedo.png"))
-cube['normalMap'] = np.array(Image.open("./textures/normal.png"))
-cube['metallicMap'] = np.array(Image.open("./textures/metallic.png"))
-cube['roughnessMap'] = np.array(Image.open("./textures/roughness.png"))
-cube['aoMap'] = np.array(Image.open("./textures/ao.png"))
-cube['lightPositions'] = np.array((0,5,10))
-cube['lightColors'] = np.array((150, 150, 150))
+obj = gloo.Program(vertex_shader, fragment_shader)
+obj.bind(V)
+
+trackball = Trackball(Position("position"))
+obj['transform'] = trackball
+trackball.theta, trackball.phi, trackball.zoom = 40, 135, 25
+
+# obj["light_position[0]"] =  3, 0, 0+10
+# obj["light_position[1]"] =  0, 3, 0+10
+# obj["light_position[2]"] = -3, -3, +10
+# obj["light_color[0]"]    = 1, 0, 0
+# obj["light_color[1]"]    = 0, 1, 0
+# obj["light_color[2]"]    = 0, 0, 1
+
+obj['albedoMap'] = np.array(Image.open("./textures/chipped-paint-metal/chipped-paint-metal-albedo.png"))
+obj['normalMap'] = np.array(Image.open("./textures/chipped-paint-metal/chipped-paint-metal-normal-dx.png"))
+obj['metallicMap'] = np.array(Image.open("./textures/chipped-paint-metal/chipped-paint-metal-metal.png"))
+obj['roughnessMap'] = np.array(Image.open("./textures/chipped-paint-metal/chipped-paint-metal-rough2.png"))
+obj['aoMap'] = np.array(Image.open("./textures/chipped-paint-metal/chipped-paint-ao.png"))
+
+# rusty metal
+# obj['albedoMap'] = np.array(Image.open("./textures/rustediron/rustediron2_basecolor.png"))
+# obj['normalMap'] = np.array(Image.open("./textures/rustediron/rustediron2_normal.png"))
+# obj['metallicMap'] = np.array(Image.open("./textures/rustediron/rustediron2_metallic.png"))
+# obj['roughnessMap'] = np.array(Image.open("./textures/rustediron/rustediron2_roughness.png"))
+# obj['aoMap'] = np.array(Image.open("./textures/rustediron/ao.png"))
 
 
-cube['model'] = np.eye(4, dtype=np.float32) 
-cube['view'] = glm.translation(0, 0, -20)
-phi, theta = 0,0
+obj['lightPositions'] = np.array((0,0,5))
+obj['lightColors'] = np.array((1,1,1)) * 100
+obj['camPos'] = np.array((0,0,5)) #!!!!
 
-app.run()
+# obj['model'] = np.eye(4, dtype=np.float32) 
+# obj['view'] = glm.translation(0, 0, -5)
+# phi, theta = 0,0
+
+window.attach(obj['transform'])
+
+app.run(framerate = 120)
 
 
 
