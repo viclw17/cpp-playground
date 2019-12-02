@@ -21,6 +21,7 @@ def refresh2D():
 
 def showScreen():
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
+    # glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glLoadIdentity() # Reset position
     refresh2D()
 

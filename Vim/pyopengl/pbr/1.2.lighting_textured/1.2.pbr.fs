@@ -1,14 +1,13 @@
 #version 330 core
 // out vec4 FragColor;
 
-// uniform mat4 model;
-// uniform mat4 view;
-// uniform mat4 normal;
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 normal; // glumpy normal matrix
 
 varying vec3 v_position; // WorldPos;
 varying vec2 v_texcoord; // TexCoords;
 varying vec3 v_normal;
-// varying vec3 PositionCS;
 
 // material parameters
 uniform sampler2D albedoMap;
@@ -26,12 +25,16 @@ uniform vec3 camPos;
 
 const float PI = 3.14159265359;
 
+// Calculate the location of this fragment (pixel) in world coordinates
+// vec3 WorldPos = v_position;
+vec3 WorldPos = vec3(view * model * vec4(v_position, 1));
+// Calculate normal in world coordinates
+// vec3 Normal = v_normal;
+vec3 Normal = normalize(normal * vec4(v_normal,1.0)).xyz;
+vec2 TexCoords = v_texcoord;
+vec3 PositionVS = vec3(view * vec4(v_position, 1));
 // https://stackoverflow.com/questions/14980712/how-to-get-flat-normals-on-a-cube
 // vec3 Normal = normalize(cross(dFdx(PositionCS), dFdy(PositionCS)));
-// vec3 Normal = normalize(normal * vec4(v_normal,1.0)).xyz;
-vec3 Normal = v_normal;
-vec3 WorldPos = v_position;
-vec2 TexCoords = v_texcoord;
 
 
 // ----------------------------------------------------------------------------
@@ -145,6 +148,7 @@ void main()
         // scale light by NdotL
         float NdotL = max(dot(N, L), 0.0);        
 
+        vec3 diffuse = (kD * albedo / PI);
         // add to outgoing radiance Lo
         Lo += (kD * albedo / PI + specular) * radiance * NdotL;  
         // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
@@ -152,7 +156,7 @@ void main()
     
     // ambient lighting (note that the next IBL tutorial will replace 
     // this ambient lighting with environment lighting).
-    vec3 ambient = vec3(0.05) * albedo * ao; //0.03
+    vec3 ambient = vec3(0.03) * albedo * ao; //0.03
     
     vec3 color = ambient + Lo;
 
@@ -161,15 +165,42 @@ void main()
     // gamma correct
     color = pow(color, vec3(1.0/2.2)); 
 
+    
+    // tex
     // color = albedo;
+    // color = N;
     // color = vec3(metallic);
     // color = vec3(roughness);
-    // color = vec3(DistributionGGX(N, H, roughness));
-    // color = vec3(GeometrySmith(N, V, L, roughness));
-    // color = fresnelSchlick(max(dot(H, V), 0.0), F0);
+
+    // BRDF specular term
+    // color = vec3(DistributionGGX(N, H, roughness)); // D
+    // color = vec3(GeometrySmith(N, V, L, roughness)); //G
+    // color = fresnelSchlick(max(dot(H, V), 0.0), vec3(0.02)); // F
+
+    // color = diffuse;
     // color = specular;
-    // color = ambient;
-    // color = Normal;
+
     // color = Lo;
+
+    // n
+    // color = Normal;
+    // color = vec3(abs(Normal.x)); // test ws normal
+    // color = N;
+
+    // wp
+    // color = v_position;
+    // color = vec3(v_position.x);
+    // color = vec3(v_position.y);
+    // color = vec3(v_position.z);
+
+    // view space
+    // color = PositionVS;
+
+    // uv
+    // color = vec3(v_texcoord.x);// uv.x
+    // color = vec3(v_texcoord.y);// uv.y
+    // color = vec3((mod(v_texcoord.xy,0.1)*10),0); // uv mod
+    // color = vec3(floor(v_texcoord.xy*10)/10,0); // uv floor
+    // color = vec3(1);
     gl_FragColor = vec4(color, 1.0);
 }
