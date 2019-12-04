@@ -3,7 +3,7 @@
 
 uniform mat4 model;
 uniform mat4 view;
-uniform mat4 normal; // glumpy normal matrix
+uniform mat4 normal;
 
 varying vec3 v_position; // WorldPos;
 varying vec2 v_texcoord; // TexCoords;
@@ -15,27 +15,30 @@ uniform sampler2D normalMap;
 uniform sampler2D metallicMap;
 uniform sampler2D roughnessMap;
 uniform sampler2D aoMap;
-
 // lights
-uniform vec3 lightPositions;
+uniform vec3 lightPositions[1];
 uniform vec3 lightColors;
-
 // camera
 uniform vec3 camPos;
 
+uniform float time;
 const float PI = 3.14159265359;
 
-// Calculate the location of this fragment (pixel) in world coordinates
-// vec3 WorldPos = v_position;
-vec3 WorldPos = vec3(view * model * vec4(v_position, 1));
-// Calculate normal in world coordinates
-// vec3 Normal = v_normal;
-vec3 Normal = normalize(normal * vec4(v_normal,1.0)).xyz;
-vec2 TexCoords = v_texcoord;
-vec3 PositionVS = vec3(view * vec4(v_position, 1));
-// https://stackoverflow.com/questions/14980712/how-to-get-flat-normals-on-a-cube
-// vec3 Normal = normalize(cross(dFdx(PositionCS), dFdy(PositionCS)));
+float t = time;
+vec3 lightPosition = vec3(10*sin(t),10,10*cos(t));
 
+// ----------------------------------------------------------------------------
+
+vec3 localPos = v_position;
+vec3 ViewPos = vec3(view * model * vec4(v_position, 1));
+vec3 WorldPos = vec3(model * vec4(v_position, 1));
+
+vec3 localNormal = v_normal;
+vec3 worldNormal = vec3(model * vec4(v_normal, 1));
+// vec3 Normal = normalize(normal * vec4(v_normal,1.0)).xyz; // glumpy
+vec3 Normal = worldNormal;
+
+vec2 TexCoords = v_texcoord;
 
 // ----------------------------------------------------------------------------
 // Easy trick to get tangent-normals to world-space to keep PBR code simplified.
@@ -100,13 +103,20 @@ vec3 fresnelSchlick(float cosTheta, vec3 F0)
 }
 // ----------------------------------------------------------------------------
 void main()
-{		
+{            
+    #if 0
+    vec3 albedo     = vec3(.2);
+    float metallic  = 0;
+    float roughness = .5;
+    #else
     vec3 albedo     = pow(texture2D(albedoMap, TexCoords).rgb, vec3(2.2)); //2.2
     float metallic  = texture2D(metallicMap, TexCoords).r;
     float roughness = texture2D(roughnessMap, TexCoords).r;
     float ao        = texture2D(aoMap, TexCoords).r;
+    #endif
 
-    vec3 N = getNormalFromMap();
+    vec3 N = worldNormal; 
+    // vec3 N = getNormalFromMap();
     vec3 V = normalize(camPos - WorldPos);
 
     // calculate reflectance at normal incidence; if dia-electric (like plastic) use F0 
@@ -116,12 +126,12 @@ void main()
 
     // reflectance equation
     vec3 Lo = vec3(0.0);
-    // for(int i = 0; i < 1; ++i) 
+    // for(int i = 0; i < 4; ++i) 
     // {
         // calculate per-light radiance
-        vec3 L = normalize(lightPositions - WorldPos);
+        vec3 L = normalize(lightPosition - WorldPos);
         vec3 H = normalize(V + L);
-        float distance = length(lightPositions - WorldPos);
+        float distance = length(lightPosition - WorldPos);
         float attenuation = 1.0 / (distance * distance);
         vec3 radiance = lightColors * attenuation;
 
@@ -129,7 +139,6 @@ void main()
         float NDF = DistributionGGX(N, H, roughness);   
         float G   = GeometrySmith(N, V, L, roughness);      
         vec3 F    = fresnelSchlick(max(dot(H, V), 0.0), F0);
-           
         vec3 nominator    = NDF * G * F; 
         float denominator = 4 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0) + 0.001; // 0.001 to prevent divide by zero.
         vec3 specular = nominator / denominator;
@@ -148,10 +157,10 @@ void main()
         // scale light by NdotL
         float NdotL = max(dot(N, L), 0.0);        
 
-        vec3 diffuse = (kD * albedo / PI);
         // add to outgoing radiance Lo
         Lo += (kD * albedo / PI + specular) * radiance * NdotL;  
         // note that we already multiplied the BRDF by the Fresnel (kS) so we won't multiply by kS again
+    
     // }   
     
     // ambient lighting (note that the next IBL tutorial will replace 
@@ -168,39 +177,56 @@ void main()
     
     // tex
     // color = albedo;
-    // color = N;
+    // color = (N+1)*.5;
     // color = vec3(metallic);
     // color = vec3(roughness);
 
     // BRDF specular term
     // color = vec3(DistributionGGX(N, H, roughness)); // D
-    // color = vec3(GeometrySmith(N, V, L, roughness)); //G
-    // color = fresnelSchlick(max(dot(H, V), 0.0), vec3(0.02)); // F
+    // color = vec3(GeometrySmith(N, V, L, roughness)); // G
+    // color = fresnelSchlick(max(dot(H, V), 0.0), F0);
+    // color = fresnelSchlick(max(dot(H, V), 0.0), vec3(.1));// F
+    // color = fresnelSchlick(max(dot(N, V), 0.0), vec3(.1));// F
+    // if (dot(N, V)<.1)
+    //     color = vec3(1,0,0);
+    // else if (dot(N, V)>.5)
+    //     color = vec3(0,1,0);
+    // else
+    //     color = vec3(1,1,0);
 
-    // color = diffuse;
+    // if (dot(H, V)<.3)
+    //     color = vec3(1,0,0);// * NDF*G;
+    // else if (dot(H, V)>.5)
+    //     color = vec3(0,1,0);// * NDF*G;
+    // else
+    //     color = vec3(1,1,0);// * NDF*G;
+
+
     // color = specular;
-
     // color = Lo;
 
     // n
-    // color = Normal;
-    // color = vec3(abs(Normal.x)); // test ws normal
-    // color = N;
+    // color = v_normal; // local normal
+    // color = Normal; // ws
+    // color = (N+1)*.5; // nmap
 
-    // wp
-    // color = v_position;
-    // color = vec3(v_position.x);
-    // color = vec3(v_position.y);
-    // color = vec3(v_position.z);
-
-    // view space
-    // color = PositionVS;
+    // p
+    vec3 lp = v_position;
+    // color = lp;
+    // color = vec3(pow(abs(floor(lp.z*10)/10),.5));
+    vec3 wp = vec3(model*vec4(v_position, 1));
+    // color = wp;
+    // color = vec3(pow(abs(floor(wp.z*10)/10),.5));
+    vec3 vp = vec3(view * model * vec4(v_position, 1));
+    // color = vp
+    // color = vec3(pow(abs(floor(vp.x*10)/10),.5));
 
     // uv
     // color = vec3(v_texcoord.x);// uv.x
     // color = vec3(v_texcoord.y);// uv.y
     // color = vec3((mod(v_texcoord.xy,0.1)*10),0); // uv mod
     // color = vec3(floor(v_texcoord.xy*10)/10,0); // uv floor
-    // color = vec3(1);
+    
+    // color = vec3(.5);
     gl_FragColor = vec4(color, 1.0);
 }

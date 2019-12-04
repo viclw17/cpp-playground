@@ -1,8 +1,10 @@
 #version 150
 // #version 330 core
-uniform mat4 projection;
-uniform mat4 view;
-uniform mat4 model;
+// uniform mat4 projection;
+// uniform mat4 view;
+// uniform mat4 model;
+
+uniform float time;
 
 attribute vec3 position;//aPos
 attribute vec2 texcoord;//aTexCoords;
@@ -14,10 +16,10 @@ varying vec3 v_normal;
 
 void main()
 {
-    v_texcoord = texcoord;
-
     v_position = position; // transform done in fs
     // v_position = vec3(model * vec4(position, 1.0));
+
+    v_texcoord = texcoord;// + vec2(0,sin(time));
 
     // local normal
     v_normal = normal; // transform done in fs
