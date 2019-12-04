@@ -59,3 +59,6 @@ open
 ---
 # Difference between “texture” vs “texture2d” in OpenGL ES?
 ```texture2D``` is the same as ```texture```, but it's used in the older versions of glsl. Between glsl 120 and 130 they changed the function to ```texture``` and made it accept every kind of samplers, not just a sampler2D.
+
+# in and out
+[How to pass data from shader to shader in OpenGL](https://www.haroldserrano.com/blog/how-to-pass-data-from-shader-to-shader-in-opengl)
