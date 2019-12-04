@@ -5,6 +5,9 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 normal;
 
+uniform int p;
+uniform int t;
+
 varying vec3 v_position; // WorldPos;
 varying vec2 v_texcoord; // TexCoords;
 varying vec3 v_normal;
@@ -24,8 +27,7 @@ uniform vec3 camPos;
 uniform float time;
 const float PI = 3.14159265359;
 
-float t = time;
-vec3 lightPosition = vec3(10*sin(t),10,10*cos(t));
+vec3 lightPosition = vec3(10*sin(time),5,10*cos(time));
 
 // ----------------------------------------------------------------------------
 
@@ -173,13 +175,19 @@ void main()
     color = color / (color + vec3(1.0));
     // gamma correct
     color = pow(color, vec3(1.0/2.2)); 
-
+    vec3 final = color;
     
     // tex
-    // color = albedo;
-    // color = (N+1)*.5;
-    // color = vec3(metallic);
-    // color = vec3(roughness);
+    if(t == 0)
+        color = albedo;
+    else if (t == 1)    
+        color = (N+1)*.5;
+    else if (t == 2)
+        color = vec3(metallic);
+    else if (t == 3)
+        color = vec3(roughness);
+    else
+        color = final;
 
     // BRDF specular term
     // color = vec3(DistributionGGX(N, H, roughness)); // D
@@ -201,6 +209,11 @@ void main()
     // else
     //     color = vec3(1,1,0);// * NDF*G;
 
+    // float ior = 1.5;
+    // float f0 = abs ((1.0 - ior) / (1.0 + ior));
+    // f0 = f0 * f0;
+    // color = vec3(f0 + (1-f0) * pow( 1 - dot(H, V), 5));
+
 
     // color = specular;
     // color = Lo;
@@ -211,16 +224,22 @@ void main()
     // color = (N+1)*.5; // nmap
 
     // p
-    vec3 lp = v_position;
-    // color = lp;
-    // color = vec3(pow(abs(floor(lp.z*10)/10),.5));
-    vec3 wp = vec3(model*vec4(v_position, 1));
-    // color = wp;
-    // color = vec3(pow(abs(floor(wp.z*10)/10),.5));
-    vec3 vp = vec3(view * model * vec4(v_position, 1));
-    // color = vp
-    // color = vec3(pow(abs(floor(vp.x*10)/10),.5));
-
+    if(p==0){
+        vec3 lp = v_position;
+        color = lp;
+        // color = vec3(pow(abs(floor(lp.z*10)/10),.5));
+    }else if(p==1){
+        vec3 wp = vec3(model*vec4(v_position, 1));
+        color = wp;
+        // color = vec3(pow(abs(floor(wp.z*10)/10),.5));
+    }else if(p==2){
+        vec3 vp = vec3(view * model * vec4(v_position, 1));
+        color = vp;
+        // color = vec3(pow(abs(floor(vp.x*10)/10),.5));
+    }else{
+        color = final;
+    }
+    
     // uv
     // color = vec3(v_texcoord.x);// uv.x
     // color = vec3(v_texcoord.y);// uv.y

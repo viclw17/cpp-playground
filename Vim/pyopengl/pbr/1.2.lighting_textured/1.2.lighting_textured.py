@@ -42,9 +42,23 @@ def on_init():
     update()
     pass
 
+@window.event
+def on_character(character):
+    global p,n,t
+    print('Character entered (chracter: %s)'% character)
+    if (character == ' '): p,n,t = 0,0,0
+    if (character == 'p'): p = (p+1) % 4
+    if (character == 'n'): n = (n+1) % 4
+    if (character == 't'): t = (t+1) % 4
+
+    obj['p'] = p
+    obj['t'] = t
+
+
+
 '''Models'''
 V, I = primitives.sphere() 
-# V, I = primitives.teapot() 
+V, I = primitives.teapot() 
 # V, I = primitives.cube()
 # V, I = primitives.cubesphere()
 # V, I = primitives.tube() 
@@ -81,6 +95,8 @@ obj['aoMap'] = np.array(Image.open("../textures/chipped-paint-metal/chipped-pain
 # obj['metallicMap'] = np.array(Image.open("../textures/rustediron/rustediron2_metallic.png"))
 # obj['roughnessMap'] = np.array(Image.open("../textures/rustediron/rustediron2_roughness.png"))
 # obj['aoMap'] = np.array(Image.open("../textures/rustediron/ao.png"))
+
+
 
 window.attach(obj['transform'])
 
