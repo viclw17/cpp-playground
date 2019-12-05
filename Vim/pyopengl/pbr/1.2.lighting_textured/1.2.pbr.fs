@@ -27,7 +27,8 @@ uniform vec3 camPos;
 uniform float time;
 const float PI = 3.14159265359;
 
-vec3 lightPosition = vec3(10*sin(time),5,10*cos(time));
+// vec3 lightPosition = vec3(10*sin(time),5,10*cos(time));
+vec3 lightPosition = vec3(10,5,10);
 
 // ----------------------------------------------------------------------------
 
@@ -117,8 +118,8 @@ void main()
     float ao        = texture2D(aoMap, TexCoords).r;
     #endif
 
-    vec3 N = worldNormal; 
-    // vec3 N = getNormalFromMap();
+    // vec3 N = worldNormal; 
+    vec3 N = getNormalFromMap();
     vec3 V = normalize(camPos - WorldPos);
 
     // calculate reflectance at normal incidence; if dia-electric (like plastic) use F0 
@@ -177,17 +178,6 @@ void main()
     color = pow(color, vec3(1.0/2.2)); 
     vec3 final = color;
     
-    // tex
-    if(t == 0)
-        color = albedo;
-    else if (t == 1)    
-        color = (N+1)*.5;
-    else if (t == 2)
-        color = vec3(metallic);
-    else if (t == 3)
-        color = vec3(roughness);
-    else
-        color = final;
 
     // BRDF specular term
     // color = vec3(DistributionGGX(N, H, roughness)); // D
@@ -214,38 +204,45 @@ void main()
     // f0 = f0 * f0;
     // color = vec3(f0 + (1-f0) * pow( 1 - dot(H, V), 5));
 
-
     // color = specular;
     // color = Lo;
 
-    // n
-    // color = v_normal; // local normal
-    // color = Normal; // ws
-    // color = (N+1)*.5; // nmap
 
-    // p
     if(p==0){
+        color = final;
+    }else if(p==1){
         vec3 lp = v_position;
         color = lp;
         // color = vec3(pow(abs(floor(lp.z*10)/10),.5));
-    }else if(p==1){
+    }else if(p==2){
         vec3 wp = vec3(model*vec4(v_position, 1));
         color = wp;
         // color = vec3(pow(abs(floor(wp.z*10)/10),.5));
-    }else if(p==2){
+    }else if(p==3){
         vec3 vp = vec3(view * model * vec4(v_position, 1));
         color = vp;
         // color = vec3(pow(abs(floor(vp.x*10)/10),.5));
+    }else if(p==4){
+        // color = vec3(v_texcoord.x);// uv.x
+        // color = vec3(v_texcoord.y);// uv.y
+        // color = vec3((mod(v_texcoord.xy,0.1)*10),0); // uv mod
+        color = vec3(floor(v_texcoord.xy*10)/10,0); // uv floor
+    }else if(p==5){
+        color = v_normal; // local normal
+    }else if(p==6){
+        color = Normal; // ws
+    }else if(p==7){
+        color = (N+1)*.5; // nmap
+    }else if(p==8){
+        color = albedo;
+    }else if(p==9){
+        color = vec3(metallic);
+    }else if(p==10){
+        color = vec3(roughness);
     }else{
         color = final;
     }
-    
-    // uv
-    // color = vec3(v_texcoord.x);// uv.x
-    // color = vec3(v_texcoord.y);// uv.y
-    // color = vec3((mod(v_texcoord.xy,0.1)*10),0); // uv mod
-    // color = vec3(floor(v_texcoord.xy*10)/10,0); // uv floor
-    
     // color = vec3(.5);
+    // color= final;
     gl_FragColor = vec4(color, 1.0);
 }

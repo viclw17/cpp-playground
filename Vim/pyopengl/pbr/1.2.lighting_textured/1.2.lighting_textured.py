@@ -44,20 +44,16 @@ def on_init():
 
 @window.event
 def on_character(character):
-    global p,n,t
+    global p
     print('Character entered (chracter: %s)'% character)
-    if (character == ' '): p,n,t = 0,0,0
-    if (character == 'p'): p = (p+1) % 4
-    if (character == 'n'): n = (n+1) % 4
-    if (character == 't'): t = (t+1) % 4
-
+    if (character == ' '): p = 0
+    if (character == 'p'): p = (p+1) % 11
     obj['p'] = p
-    obj['t'] = t
 
 
 
 '''Models'''
-V, I = primitives.sphere() 
+# V, I = primitives.sphere() 
 V, I = primitives.teapot() 
 # V, I = primitives.cube()
 # V, I = primitives.cubesphere()
