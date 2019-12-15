@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>logFormatVersion</key>
+	<integer>10</integer>
+	<key>logs</key>
+	<dict>
+		<key>20E11CD3-0A15-4278-A4B1-F83D2CAFC965</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
+			<key>fileName</key>
+			<string>20E11CD3-0A15-4278-A4B1-F83D2CAFC965.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>signature</key>
+			<string>montelight-gjbahyrdbesbdogmkvtiysuupsdw</string>
+			<key>timeStartedRecording</key>
+			<real>598096783.15364301</real>
+			<key>timeStoppedRecording</key>
+			<real>598096783.74530602</real>
+			<key>title</key>
+			<string>Build target montelight</string>
+			<key>uniqueIdentifier</key>
+			<string>20E11CD3-0A15-4278-A4B1-F83D2CAFC965</string>
+		</dict>
+	</dict>
+	<key>preserveOldLogs</key>
+	<true/>
+</dict>
+</plist>
