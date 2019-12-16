@@ -7,47 +7,79 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "F5B334F6-6496-4969-9E1E-E5C6DAEDE520"
-            shouldBeEnabled = "Yes"
+            uuid = "A847146D-D8A3-40D9-9F21-40B7B3518EE3"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CppTest/main.cpp"
+            filePath = "CppTest/Class.hpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "construct()"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "Class1"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9E494A35-D9B7-4902-A39C-D619929D1430"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CppTest/Class.cpp"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "Class1::Class1()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9E494A35-D9B7-4902-A39C-D619929D1430 - a8e0cbac27dbbdd0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Class1::Class1()"
+                  moduleName = "CppTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wei_li/Git/cpp-playground/CppTest/CppTest/Class.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "15"
+                  endingLineNumber = "15"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "9E494A35-D9B7-4902-A39C-D619929D1430 - a8e0cbac27dbbdd0"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Class1::Class1()"
+                  moduleName = "CppTest"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/wei_li/Git/cpp-playground/CppTest/CppTest/Class.cpp"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "62921D99-FD05-4DE7-B4C0-91E8120A64DA"
-            shouldBeEnabled = "Yes"
+            uuid = "1D8BD890-CC6C-43DE-8018-0C8B8C4BBE24"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CppTest/main.cpp"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "main()"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "AA15896C-47D0-41A8-A79F-924D1C18230D"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CppTest/main.cpp"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
             landmarkName = "main()"
             landmarkType = "9">
          </BreakpointContent>

@@ -16,8 +16,8 @@ struct Vector { // struct is a public class
   double x, y, z;
   //
   Vector(const Vector &o) : x(o.x), y(o.y), z(o.z) {}
-
   Vector(double x_=0, double y_=0, double z_=0) : x(x_), y(y_), z(z_) {}
+    
   inline Vector operator+(const Vector &o) const {
     return Vector(x + o.x, y + o.y, z + o.z);
   }

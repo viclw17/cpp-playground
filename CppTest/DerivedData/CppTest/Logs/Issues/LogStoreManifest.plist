@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>20E11CD3-0A15-4278-A4B1-F83D2CAFC965</key>
+		<key>7F888EED-0DC2-4593-B72D-8A3F4C544C3B</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
 			<key>fileName</key>
-			<string>20E11CD3-0A15-4278-A4B1-F83D2CAFC965.xcactivitylog</string>
+			<string>7F888EED-0DC2-4593-B72D-8A3F4C544C3B.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -26,13 +26,41 @@
 			<key>signature</key>
 			<string>montelight-gjbahyrdbesbdogmkvtiysuupsdw</string>
 			<key>timeStartedRecording</key>
-			<real>598096783.15364301</real>
+			<real>598209525.983904</real>
 			<key>timeStoppedRecording</key>
-			<real>598096783.74530602</real>
+			<real>598209526.94363499</real>
 			<key>title</key>
 			<string>Build target montelight</string>
 			<key>uniqueIdentifier</key>
-			<string>20E11CD3-0A15-4278-A4B1-F83D2CAFC965</string>
+			<string>7F888EED-0DC2-4593-B72D-8A3F4C544C3B</string>
+		</dict>
+		<key>FCA21462-C163-40E3-9FE5-394A080984EE</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
+			<key>fileName</key>
+			<string>FCA21462-C163-40E3-9FE5-394A080984EE.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>CppTest-gjbahyrdbesbdogmkvtiysuupsdw</string>
+			<key>timeStartedRecording</key>
+			<real>598213616.12226796</real>
+			<key>timeStoppedRecording</key>
+			<real>598213616.65683103</real>
+			<key>title</key>
+			<string>Build target CppTest</string>
+			<key>uniqueIdentifier</key>
+			<string>FCA21462-C163-40E3-9FE5-394A080984EE</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>
