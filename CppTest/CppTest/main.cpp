@@ -7,9 +7,13 @@
 //
 
 #include <iostream>
-#include "Class.hpp"
-#include "vector.h"
+#include "stdio.h"
+
+#include "class.hpp"
 #include "val_ref.h"
+
+#include "vector.h"
+#include "image.h"
 using namespace std;
 
 //val_ref.h
@@ -26,19 +30,37 @@ int main()
 {
     // Default constructor called automatically
     // when the object is created
-    class1 c;
-    cout << "a: " << c.a << endl
-         << "b: " << c.b << endl;
+//    class1 c; // default
+//    c = class1(1,2,3);
+//    class1* c_ptr = &c;
+//    cout << c_ptr << endl; // address
+//    cout << "a thru ptr: " << c_ptr->a << endl;
+//    cout << "a thru dot: " << c.a << endl;
+//    cout << "b: " << c.b << endl;
+//    cout << c.getC() << endl;
+//    c.setC(333);
+//    cout << c.getC() << endl;
     
-    Vector v0;
-    cout << "v0: " << v0.print();
-    Vector v1(1,1,1);
-    cout << "v1: " << v1.print();
-    Vector v2 = v1;
-    Vector v3(v1);    
-    cout << "v1: " << v1.print();
-    cout << "v2: " << v2.print();
-    cout << "v3: " << v3.print();
+    Image img(64,64);
+    for(int i=0; i<64; i++){
+        for(int j=0; j<64; j++){
+            img.setPixel(i, j, Vector(i,j,0));
+        }
+    }
+    
+    img.save("victor");
+    
+    
+//    Vector v0;
+//    cout << "v0: " << v0.print();
+//    Vector v1(1,2,3);
+//    cout << "v1: " << v1.print();
+//    cout << (v0-v1).print() <<endl;
+//    Vector v2 = v1;
+//    Vector v3(v1);
+//    cout << "v1: " << v1.print();
+//    cout << "v2: " << v2.print();
+//    cout << "v3: " << v3.print();
 
     return 1;
 }

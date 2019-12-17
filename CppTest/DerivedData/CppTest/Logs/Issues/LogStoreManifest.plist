@@ -6,6 +6,34 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
+		<key>4ED7BB73-C8D7-46F7-BD1B-B490CE4E2FE4</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
+			<key>fileName</key>
+			<string>4ED7BB73-C8D7-46F7-BD1B-B490CE4E2FE4.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>CppTest-gjbahyrdbesbdogmkvtiysuupsdw</string>
+			<key>timeStartedRecording</key>
+			<real>598298716.34458494</real>
+			<key>timeStoppedRecording</key>
+			<real>598298717.07705104</real>
+			<key>title</key>
+			<string>Build target CppTest</string>
+			<key>uniqueIdentifier</key>
+			<string>4ED7BB73-C8D7-46F7-BD1B-B490CE4E2FE4</string>
+		</dict>
 		<key>7F888EED-0DC2-4593-B72D-8A3F4C544C3B</key>
 		<dict>
 			<key>className</key>
@@ -33,34 +61,6 @@
 			<string>Build target montelight</string>
 			<key>uniqueIdentifier</key>
 			<string>7F888EED-0DC2-4593-B72D-8A3F4C544C3B</string>
-		</dict>
-		<key>FCA21462-C163-40E3-9FE5-394A080984EE</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogMajorGroupSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
-			<key>fileName</key>
-			<string>FCA21462-C163-40E3-9FE5-394A080984EE.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>signature</key>
-			<string>CppTest-gjbahyrdbesbdogmkvtiysuupsdw</string>
-			<key>timeStartedRecording</key>
-			<real>598213616.12226796</real>
-			<key>timeStoppedRecording</key>
-			<real>598213616.65683103</real>
-			<key>title</key>
-			<string>Build target CppTest</string>
-			<key>uniqueIdentifier</key>
-			<string>FCA21462-C163-40E3-9FE5-394A080984EE</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>

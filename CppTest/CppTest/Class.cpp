@@ -15,3 +15,7 @@ class1::class1(){
     a = 10;
     b = 20;
 }
+
+class1::~class1(){
+    cout << "class1 is destroyed!" << endl;
+}

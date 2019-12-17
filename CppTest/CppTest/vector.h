@@ -10,6 +10,8 @@
 #define vector_h
 #include "stdio.h"
 #include <string>
+#include <cmath>
+
 using namespace std;
 
 // struct is a public class
@@ -52,11 +54,21 @@ struct Vector {
         printf("call vector add... \n");
         return Vector(x + o.x, y + o.y, z + o.z);
     }
+    inline Vector operator-(const Vector &o) const;
+    inline Vector operator*(const Vector &o) const;
+    inline Vector operator/(double o) const;
+    inline Vector operator*(double o) const;
     // now we DO want to modify the object itself!
-    inline Vector& operator+=(const Vector& rhs) {
-        x += rhs.x; y += rhs.y; z += rhs.z;
-        return *this;
-    }
+    // unary operation
+    // return ref to itself
+    inline Vector& operator+=(const Vector& rhs);
+    inline Vector& norm();
+    inline Vector& clamp();
+    inline double dot(const Vector &o) const;
+    inline Vector cross(Vector &o);
+    inline Vector& abs();
+    inline double min();
+    inline double max();
 
     string print() {
         return
@@ -66,4 +78,50 @@ struct Vector {
     }
     
 };
+inline Vector Vector::operator-(const Vector &o) const {
+ return Vector(x - o.x, y - o.y, z - o.z);
+}
+inline Vector Vector::operator*(const Vector &o) const {
+ return Vector(x * o.x, y * o.y, z * o.z);
+}
+inline Vector Vector::operator/(double o) const {
+ return Vector(x / o, y / o, z / o);
+}
+inline Vector Vector::operator*(double o) const {
+ return Vector(x * o, y * o, z * o);
+}
+inline Vector& Vector::operator+=(const Vector& rhs) {
+    x += rhs.x; y += rhs.y; z += rhs.z;
+    return *this; // this?
+}
+inline Vector& Vector::norm(){
+  return *this = *this * (1 / sqrt(x * x + y * y + z * z));
+}
+inline double Vector::dot(const Vector &o) const {
+  return x * o.x + y * o.y + z * o.z;
+}
+inline Vector Vector::cross(Vector &o){
+  return Vector(y * o.z - z * o.y, z * o.x - x * o.z, x * o.y - y * o.x);
+}
+inline Vector& Vector::abs() {
+  x = fabs(x); y = fabs(y); z = fabs(z);
+  return *this;
+}
+inline double Vector::min() {
+  return fmin(x, fmin(y, z));
+}
+inline double Vector::max() {
+  return fmax(x, fmax(y, z));
+}
+inline Vector& Vector::clamp() {
+  // C++11 lambda function: http://en.cppreference.com/w/cpp/language/lambda
+  auto clampDouble = [](double x) {
+    if (x < 0) return 0.0;
+    if (x > 1) return 1.0;
+    return x;
+  };
+  x = clampDouble(x); y = clampDouble(y); z = clampDouble(z);
+  return *this;
+}
+
 #endif /* vector_h */
