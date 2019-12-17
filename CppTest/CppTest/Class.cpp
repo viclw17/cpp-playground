@@ -6,12 +6,12 @@
 //  Copyright © 2019 Victor Li. All rights reserved.
 //
 
-#include "Class.hpp"
+#include "class.hpp"
 #include <iostream>
 using namespace std;
 
 // Default Constructor
-Class1::Class1(){
+class1::class1(){
     a = 10;
     b = 20;
 }
