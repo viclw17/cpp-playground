@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <iostream>
+#include "vector.h"
 using namespace std;
   
 class class1 {
@@ -34,6 +35,8 @@ public:
     void setC(int x) {
         c = x;
     }
+    virtual Vector virtual1(const Vector &v) const { return Vector(); }
+
 };
 
 //class1::~class1(){

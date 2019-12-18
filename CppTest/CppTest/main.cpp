@@ -10,6 +10,7 @@
 #include "stdio.h"
 
 #include "class.hpp"
+#include "child.h"
 #include "val_ref.h"
 
 #include "vector.h"
@@ -41,15 +42,19 @@ int main()
 //    c.setC(333);
 //    cout << c.getC() << endl;
     
-    Image img(64,64);
-    for(int i=0; i<64; i++){
-        for(int j=0; j<64; j++){
-            img.setPixel(i, j, Vector(i,j,0));
-        }
-    }
+//    Image img(64,64);
+//    for(int i=0; i<64; i++){
+//        for(int j=0; j<64; j++){
+//            float u = float(i)/64;
+//            float v = float(j)/64;
+//            img.setPixel(i, j, Vector(u,v,0));
+//        }
+//    }
+//    img.save("victor");
     
-    img.save("victor");
-    
+    child1 c;
+    Vector v = c.child_virtual1();
+    cout << v.print();
     
 //    Vector v0;
 //    cout << "v0: " << v0.print();
