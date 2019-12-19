@@ -15,6 +15,8 @@
 
 #include "vector.h"
 #include "image.h"
+#include "shape.h"
+#include "ray.h"
 using namespace std;
 
 //val_ref.h
@@ -42,19 +44,27 @@ int main()
 //    c.setC(333);
 //    cout << c.getC() << endl;
     
-//    Image img(64,64);
-//    for(int i=0; i<64; i++){
-//        for(int j=0; j<64; j++){
-//            float u = float(i)/64;
-//            float v = float(j)/64;
-//            img.setPixel(i, j, Vector(u,v,0));
-//        }
-//    }
-//    img.save("victor");
+    Image img(64,64);
+    Sphere sphere(Vector(0,0,2), 1, Vector(1, 0, 0), Vector(0));
+    for(int i=0; i<64; i++){
+        for(int j=0; j<64; j++){
+            float u = float(i)/64;
+            float v = float(j)/64;
+            img.setPixel(i, j, Vector(u, v, 1));
+            /*Vector o = Vector(0, 0, -1);
+            Vector d = Vector(u,v,0)-o;
+            d = d.norm();
+            Ray r = Ray(o, d);
+            double inter = sphere.intersects(r);
+            img.setPixel(i, j, Vector(inter, inter, inter));*/
+
+        }
+    }
+    img.save("victor");
     
-    child1 c;
+    /*child1 c;
     Vector v = c.child_virtual1();
-    cout << v.print();
+    cout << v.print();*/
     
 //    Vector v0;
 //    cout << "v0: " << v0.print();

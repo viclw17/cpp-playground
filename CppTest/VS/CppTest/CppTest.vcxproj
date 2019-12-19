@@ -138,11 +138,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\CppTest\child.cpp" />
     <ClCompile Include="..\..\CppTest\class.cpp" />
     <ClCompile Include="..\..\CppTest\main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\CppTest\child.h" />
     <ClInclude Include="..\..\CppTest\class.hpp" />
+    <ClInclude Include="..\..\CppTest\image.h" />
+    <ClInclude Include="..\..\CppTest\ray.h" />
+    <ClInclude Include="..\..\CppTest\shape.h" />
     <ClInclude Include="..\..\CppTest\vector.h" />
     <ClInclude Include="val_ref.h" />
   </ItemGroup>
