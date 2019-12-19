@@ -34,7 +34,7 @@ struct Sphere : Shape {
 
     double intersects(const Ray& r) const;
     //Vector randomPoint() const;
-    //Vector getNormal(const Vector& p) const;
+    Vector getNormal(const Vector& p) const;
 };
 
 double Sphere::intersects(const Ray& r) const {
@@ -52,18 +52,25 @@ double Sphere::intersects(const Ray& r) const {
     if (discriminant < 0) {
         return 0;
     }
-    return 1;
+//    return 1;
     // The smallest positive root is the closest intersection point
-    /*discriminant = sqrt(discriminant);
-    double t = -b - discriminant;
+    double t = -b - sqrt(discriminant);
     if (t > EPSILON) {
-        return t / 2;
+        return t / (2*a);
     }
-    t = -b + discriminant;
+    t = -b + sqrt(discriminant);
     if (t > EPSILON) {
-        return t / 2;
+        return t / (2*a);
     }
-    return 0;*/
+    return 0;
 }
+
+Vector Sphere::getNormal(const Vector &p) const {
+    // Point must have collided with surface of sphere which is at radius
+    // Normalize the normal by using radius instead of a sqrt call
+    return (p - center) / radius;
+}
+
+
 
 #endif /* shape_h */

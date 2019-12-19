@@ -23,9 +23,9 @@ struct Vector {
     //
     // default ctor
     // use member initializer list
-    /*Vector() : x(0), y(0), z(0) {
+    Vector() : x(0), y(0), z(0) {
         printf("call default ctor \n");
-    }*/
+    }
     // use assignment
     /*Vector(){
         x = 0; y = 0; z = 0;
@@ -35,7 +35,7 @@ struct Vector {
     // copy ctor
     // it should not affect the COPIED vector
     Vector(const Vector& o) : x(o.x), y(o.y), z(o.z) { 
-        printf("call copy ctor \n"); 
+//        printf("call copy ctor \n");
     }
 
     // 'x' cannot be modified because it is being accessed through a const object
@@ -45,13 +45,17 @@ struct Vector {
     //}
 
     // construct with elements
-    Vector(double x_=0, double y_=0, double z_=0) : x(x_), y(y_), z(z_) { 
-        printf("call assign ctor \n");
+//    Vector(double x_=0, double y_=0, double z_=0) : x(x_), y(y_), z(z_) {
+//        printf("call assign ctor \n");
+//    }
+    Vector(double v_) : x(v_), y(v_), z(v_) {}
+    Vector(double x_, double y_, double z_) : x(x_), y(y_), z(z_) {
+//        printf("call assign ctor \n");
     }
 
     // instead of modifying either, return the sum as a new vector
     inline Vector operator+(const Vector &o) const {
-        printf("call vector add... \n");
+//        printf("call vector add... \n");
         return Vector(x + o.x, y + o.y, z + o.z);
     }
     inline Vector operator-(const Vector &o) const;

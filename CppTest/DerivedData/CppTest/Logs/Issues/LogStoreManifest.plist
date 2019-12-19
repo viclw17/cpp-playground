@@ -6,34 +6,6 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>5B621207-C973-4F3F-A553-1CC6AB336F99</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogMajorGroupSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
-			<key>fileName</key>
-			<string>5B621207-C973-4F3F-A553-1CC6AB336F99.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>signature</key>
-			<string>CppTest-gjbahyrdbesbdogmkvtiysuupsdw</string>
-			<key>timeStartedRecording</key>
-			<real>598385056.70831597</real>
-			<key>timeStoppedRecording</key>
-			<real>598385057.430933</real>
-			<key>title</key>
-			<string>Build target CppTest</string>
-			<key>uniqueIdentifier</key>
-			<string>5B621207-C973-4F3F-A553-1CC6AB336F99</string>
-		</dict>
 		<key>7F888EED-0DC2-4593-B72D-8A3F4C544C3B</key>
 		<dict>
 			<key>className</key>
@@ -61,6 +33,34 @@
 			<string>Build target montelight</string>
 			<key>uniqueIdentifier</key>
 			<string>7F888EED-0DC2-4593-B72D-8A3F4C544C3B</string>
+		</dict>
+		<key>9D8CE31A-F8BF-41DA-879F-D93A5B153D4E</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogMajorGroupSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
+			<key>fileName</key>
+			<string>9D8CE31A-F8BF-41DA-879F-D93A5B153D4E.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+			</dict>
+			<key>signature</key>
+			<string>CppTest-gjbahyrdbesbdogmkvtiysuupsdw</string>
+			<key>timeStartedRecording</key>
+			<real>598439856.15223205</real>
+			<key>timeStoppedRecording</key>
+			<real>598439856.91372597</real>
+			<key>title</key>
+			<string>Build target CppTest</string>
+			<key>uniqueIdentifier</key>
+			<string>9D8CE31A-F8BF-41DA-879F-D93A5B153D4E</string>
 		</dict>
 	</dict>
 	<key>preserveOldLogs</key>
