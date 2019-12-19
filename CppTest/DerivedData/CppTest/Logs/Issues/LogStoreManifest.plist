@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>7F888EED-0DC2-4593-B72D-8A3F4C544C3B</key>
+		<key>05C2B098-C750-4A95-BF2E-461229510384</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -15,7 +15,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
 			<key>fileName</key>
-			<string>7F888EED-0DC2-4593-B72D-8A3F4C544C3B.xcactivitylog</string>
+			<string>05C2B098-C750-4A95-BF2E-461229510384.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -26,13 +26,13 @@
 			<key>signature</key>
 			<string>montelight-gjbahyrdbesbdogmkvtiysuupsdw</string>
 			<key>timeStartedRecording</key>
-			<real>598209525.983904</real>
+			<real>598441437.56569898</real>
 			<key>timeStoppedRecording</key>
-			<real>598209526.94363499</real>
+			<real>598441438.33447099</real>
 			<key>title</key>
 			<string>Build target montelight</string>
 			<key>uniqueIdentifier</key>
-			<string>7F888EED-0DC2-4593-B72D-8A3F4C544C3B</string>
+			<string>05C2B098-C750-4A95-BF2E-461229510384</string>
 		</dict>
 		<key>9D8CE31A-F8BF-41DA-879F-D93A5B153D4E</key>
 		<dict>

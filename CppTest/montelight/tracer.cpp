@@ -101,7 +101,6 @@ Vector Tracer::getRadiance(const Ray &r, int depth) {
 //  if (!EMITTER_SAMPLING || depth == 0) {
 //    return hitObj->color * lightSampling + hitObj->color * reflected +  hitObj->emit;
 //  }
-    
 //  return hitObj->color * lightSampling + hitObj->color * reflected;
 
     
@@ -115,7 +114,7 @@ Vector Tracer::getRadiance(const Ray &r, int depth) {
 //    return hitObj->emit + hitObj->color;
 //    return lightSampling;
 //    return lightSampling + reflected;
-    return lightSampling + reflected + hitObj->emit;
-//    return (lightSampling + reflected) * hitObj->color + hitObj->emit;
+//    return lightSampling + reflected + hitObj->emit;
+    return (lightSampling + reflected) * hitObj->color + hitObj->emit;
 //    return reflected; // not working
 }

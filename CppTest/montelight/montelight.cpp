@@ -61,13 +61,12 @@ int main(int argc, const char *argv[]) {
     // Variables to modify the process or the images
     //  EMITTER_SAMPLING = true;
     int w = 256, h = 256;
-    // w=512; h=512;
+     w=64; h=64;
     int SNAPSHOT_INTERVAL = 100;
-    unsigned int SAMPLES = 100;//50;//100;
+    unsigned int SAMPLES = 1;//100;//50;
     bool FOCUS_EFFECT = false;
     double FOCAL_LENGTH = 35;
-    double APERTURE_FACTOR = 1; // ratio of original/new aperture
-    //(>1: smaller view angle, <1: larger view angle)
+    double APERTURE_FACTOR = 1; // ratio of original/new aperture (>1: smaller view angle, <1: larger view angle)
     // Initialize the image
     Image img(w, h);
 
@@ -94,66 +93,74 @@ int main(int argc, const char *argv[]) {
     /////////////////////////
     // Take a set number of samples per pixel
     for (int sample = 0; sample < SAMPLES; ++sample) {
-    std::cout << "Taking sample " << sample << "\r" << std::flush;
-        if (sample && sample % SNAPSHOT_INTERVAL == 0) {
-            std::ostringstream fn;
-            fn << std::setfill('0') << std::setw(5) << sample;
-//             cout << fn.str() << endl;
-            img.save("render_" + fn.str());
-        }
-    // For each pixel, sample a ray in that direction
-    for (int y = 0; y < h; ++y) {
-        for (int x = 0; x < w; ++x) {
-        /*
-        Vector target = img.getPixel(x, y);
-        double A = (target - img.getSurroundingAverage(x, y, sample % 2)).abs().max() / (100 / 255.0);
-        if (sample > 10 && drand48() > A) {
-          continue;
-        }
-        ++updated;
-        */
-        // Jitter pixel randomly in dx and dy according to the tent filter
-        double Ux = 2 * drand48();
-        double Uy = 2 * drand48();
-        double dx;
-        if (Ux < 1) {
-          dx = sqrt(Ux) - 1;
-        } else {
-          dx = 1 - sqrt(2 - Ux);
-        }
-        double dy;
-        if (Uy < 1) {
-          dy = sqrt(Uy) - 1;
-        } else {
-          dy = 1 - sqrt(2 - Uy);
-        }
+        std::cout << "Taking sample " << sample << "\r" << std::flush;
+//        if (sample && sample % SNAPSHOT_INTERVAL == 0) {
+//            std::ostringstream fn;
+//            fn << std::setfill('0') << std::setw(5) << sample;
+//            img.save("render_" + fn.str());
+//        }
+        
+        // For each pixel, sample a ray in that direction
+        for (int y = 0; y < h; ++y) {
+            for (int x = 0; x < w; ++x) {
+            /*
+            Vector target = img.getPixel(x, y);
+            double A = (target - img.getSurroundingAverage(x, y, sample % 2)).abs().max() / (100 / 255.0);
+            if (sample > 10 && drand48() > A) {
+              continue;
+            }
+            ++updated;
+            */
+            
+            // Jitter pixel randomly in dx and dy according to the tent filter
+            double Ux = 2 * drand48();
+            double Uy = 2 * drand48();
+            double dx;
+            if (Ux < 1) {
+              dx = sqrt(Ux) - 1;
+            } else {
+              dx = 1 - sqrt(2 - Ux);
+            }
+            double dy;
+            if (Uy < 1) {
+              dy = sqrt(Uy) - 1;
+            } else {
+              dy = 1 - sqrt(2 - Uy);
+            }
           
-        // Calculate the direction of the camera ray
-        Vector d = (cx * (((x+dx) / float(w)) - 0.5)) + (cy * (((y+dy) / float(h)) - 0.5)) + camera.direction;
-        Ray ray = Ray(camera.origin + d * 140, d.norm());
+            // Calculate the direction of the camera ray
+//            Vector d = (cx * (((x+dx) / float(w)) - 0.5)) + (cy * (((y+dy) / float(h)) - 0.5)) + camera.direction;
+            Vector d = (cx * ((x / float(w)) - 0.5)) + (cy * ((y / float(h)) - 0.5)) + camera.direction;
+            Ray ray = Ray(camera.origin + d * 140, d.norm());
             
-        // If we're actually using depth of field, we need to modify the camera ray to account for that
-        if (FOCUS_EFFECT) {
-          // Calculate the focal point
-          Vector fp = (camera.origin + d * L) + d.norm() * FOCAL_LENGTH;
-          // Get a pixel point and new ray direction to calculate where the rays should intersect
-          Vector del_x = (cx * dx * L / float(w));
-          Vector del_y = (cy * dy * L / float(h));
-          Vector point = camera.origin + d * L;
-          point = point + del_x + del_y;
-          d = (fp - point).norm();
-          ray = Ray(camera.origin + d * L, d.norm());
-        }
+            // If we're actually using depth of field, we need to modify the camera ray to account for that
+//            if (FOCUS_EFFECT) {
+//                // Calculate the focal point
+//                Vector fp = (camera.origin + d * L) + d.norm() * FOCAL_LENGTH;
+//                // Get a pixel point and new ray direction to calculate where the rays should intersect
+//                Vector del_x = (cx * dx * L / float(w));
+//                Vector del_y = (cy * dy * L / float(h));
+//                Vector point = camera.origin + d * L;
+//                point = point + del_x + del_y;
+//                d = (fp - point).norm();
+//                ray = Ray(camera.origin + d * L, d.norm());
+//            }
             
-        // Retrieve the radiance of the given hit location (i.e. brightness of the pixel)
-        Vector rads = tracer.getRadiance(ray, 0);
-        // Clamp the radiance so it is between 0 and 1
-        // If we don't do this, antialiasing doesn't work properly on bright lights
-        rads.clamp();
-        // Add result of sample to image
-        img.setPixel(x, y, rads);
+            // Retrieve the radiance of the given hit location (i.e. brightness of the pixel)
+            Vector rads = tracer.getRadiance(ray, 0);
+            
+            Vector hit =ray.origin+ray.direction* tracer.getIntersection(ray).second;
+            rads = tracer.getIntersection(ray).first->getNormal(hit).norm();
+            rads = (rads+Vector(1,1,1))/2;
+            
+            // Clamp the radiance so it is between 0 and 1
+            // If we don't do this, antialiasing doesn't work properly on bright lights
+            rads.clamp();
+            
+            // Add result of sample to image
+            img.setPixel(x, y, rads);
+            }
         }
-    }
     }
     // Save the resulting raytraced image
     img.save("render");

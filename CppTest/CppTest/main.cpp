@@ -64,31 +64,31 @@ int main()
 //    c.setC(333);
 //    cout << c.getC() << endl;
     
-    Image img(64,64);
-    Sphere sphere(Vector(0,0,3), 1, Vector(0), Vector(0));
-    for(int i=0; i<64; i++){
-        for(int j=0; j<64; j++){
-            double u = double(i)/64;
-            double v = double(j)/64;
-//            img.setPixel(i, j, Vector(u, v, 1));
-            u = u*2-1;
-            v = v*2-1;
-            Vector o = Vector(0);
-            Vector d = Vector(u, v, 1) - o;
-            d = d.norm();
-            Ray r = Ray(o, d);
-            double t = sphere.intersects(r);
-//            img.setPixel(i, j, Vector(t));
-            Vector hit = o + d * t;
-            Vector n = Vector(0);
-            if(t!=0){
-                n = sphere.getNormal(hit).norm();
-                n = (n+Vector(1))/2;
-            }
-            img.setPixel(i, j, n);
-        }
-    }
-    img.save("victor");
+//    Image img(64,64);
+//    Sphere sphere(Vector(0,0,3), 1, Vector(0), Vector(0));
+//    for(int i=0; i<64; i++){
+//        for(int j=0; j<64; j++){
+//            double u = double(i)/64;
+//            double v = double(j)/64;
+////            img.setPixel(i, j, Vector(u, v, 1));
+//            u = u*2-1;
+//            v = v*2-1;
+//            Vector o = Vector(0);
+//            Vector d = Vector(u, v, 1) - o;
+//            d = d.norm();
+//            Ray r = Ray(o, d);
+//            double t = sphere.intersects(r);
+////            img.setPixel(i, j, Vector(t));
+//            Vector hit = o + d * t;
+//            Vector n = Vector(0);
+//            if(t!=0){
+//                n = sphere.getNormal(hit).norm();
+//                n = (n+Vector(1))/2;
+//            }
+//            img.setPixel(i, j, n);
+//        }
+//    }
+//    img.save("victor");
     
     /*child1 c;
     Vector v = c.child_virtual1();

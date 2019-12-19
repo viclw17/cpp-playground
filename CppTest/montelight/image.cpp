@@ -67,6 +67,7 @@ void Image::save(std::string filePrefix) {
     unsigned int r = fmin(255, toInt(p.x)), g = fmin(255, toInt(p.y)), b = fmin(255, toInt(p.z));
     f << r << " " << g << " " << b << std::endl;
   }
+    f.close();
 }
 
 void Image::saveHistogram(std::string filePrefix, int maxIters) {
