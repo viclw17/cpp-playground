@@ -18,16 +18,16 @@ struct Tracer {
 };
 
 std::pair<Shape *, double> Tracer::getIntersection(const Ray &r) const {
-  Shape *hitObj = NULL;
-  double closest = 1e20f;
-  for (Shape *obj : scene) {
+    Shape *hitObj = NULL;
+    double closest = 1e20f;
+    for (Shape *obj : scene) {
     double distToHit = obj->intersects(r);
-    if (distToHit > 0 && distToHit < closest) {
-      hitObj = obj;
-      closest = distToHit;
-    }
-  }
-  return std::make_pair(hitObj, closest);
+        if (distToHit > 0 && distToHit < closest) {
+            hitObj = obj;
+            closest = distToHit;
+            }
+        }
+    return std::make_pair(hitObj, closest);
 }
 
 
