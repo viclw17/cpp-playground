@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9973821123AA9FC400398F9D /* child.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9973821023AA9FC400398F9D /* child.cpp */; };
+		9973825923B48AB800398F9D /* main_pt.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9973825323B48AB800398F9D /* main_pt.cpp */; };
 		99A207EC23A5C1BB006A8DE3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99A207EB23A5C1BB006A8DE3 /* main.cpp */; };
 		99A207F923A5C392006A8DE3 /* montelight.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99A207F823A5C392006A8DE3 /* montelight.cpp */; };
 		99A2080323A5E4BC006A8DE3 /* sphere.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 99A2080223A5E4BC006A8DE3 /* sphere.cpp */; };
@@ -18,6 +19,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		9973824923B48A8700398F9D /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 		99A207D223A5B98E006A8DE3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -48,11 +58,15 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		9973820F23AA9E5E00398F9D /* shape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
 		9973821023AA9FC400398F9D /* child.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = child.cpp; sourceTree = "<group>"; };
 		9973821223AAA00900398F9D /* child.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = child.h; sourceTree = "<group>"; };
-		9973821323AB01EB00398F9D /* ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ray.h; sourceTree = "<group>"; };
-		9973821423AB645700398F9D /* tracer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = tracer.h; sourceTree = "<group>"; };
+		9973824B23B48A8700398F9D /* montelightTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = montelightTest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9973825223B48AB800398F9D /* ray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ray.h; sourceTree = "<group>"; };
+		9973825323B48AB800398F9D /* main_pt.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main_pt.cpp; sourceTree = "<group>"; };
+		9973825423B48AB800398F9D /* shape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = shape.h; sourceTree = "<group>"; };
+		9973825623B48AB800398F9D /* tracer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tracer.h; sourceTree = "<group>"; };
+		9973825723B48AB800398F9D /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
+		9973825823B48AB800398F9D /* image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = image.h; sourceTree = "<group>"; };
 		99A207D423A5B98E006A8DE3 /* CppTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CppTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A207E123A5BB49006A8DE3 /* Leetcode */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = Leetcode; sourceTree = BUILT_PRODUCTS_DIR; };
 		99A207EB23A5C1BB006A8DE3 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
@@ -72,10 +86,16 @@
 		99A2080E23A87A30006A8DE3 /* vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = vector.h; sourceTree = "<group>"; };
 		99A2080F23A87A30006A8DE3 /* val_ref.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = val_ref.h; sourceTree = "<group>"; };
 		99A2081023A87A30006A8DE3 /* class.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = class.hpp; sourceTree = "<group>"; };
-		99A2081323A94A28006A8DE3 /* image.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = image.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9973824823B48A8700398F9D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99A207D123A5B98E006A8DE3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,6 +120,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9973824C23B48A8700398F9D /* montelightTest */ = {
+			isa = PBXGroup;
+			children = (
+				9973825823B48AB800398F9D /* image.h */,
+				9973825323B48AB800398F9D /* main_pt.cpp */,
+				9973825223B48AB800398F9D /* ray.h */,
+				9973825423B48AB800398F9D /* shape.h */,
+				9973825623B48AB800398F9D /* tracer.h */,
+				9973825723B48AB800398F9D /* vector.h */,
+			);
+			path = montelightTest;
+			sourceTree = "<group>";
+		};
 		99A207DB23A5BAD5006A8DE3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -138,6 +171,7 @@
 				99F1AFAD230A3BC200FB41FF /* CppTest */,
 				99A207E223A5BB49006A8DE3 /* Leetcode */,
 				99A207F223A5C373006A8DE3 /* montelight */,
+				9973824C23B48A8700398F9D /* montelightTest */,
 				99F1AFAC230A3BC200FB41FF /* Products */,
 				99A207DB23A5BAD5006A8DE3 /* Frameworks */,
 			);
@@ -149,6 +183,7 @@
 				99A207D423A5B98E006A8DE3 /* CppTest */,
 				99A207E123A5BB49006A8DE3 /* Leetcode */,
 				99A207F123A5C373006A8DE3 /* montelight */,
+				9973824B23B48A8700398F9D /* montelightTest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -156,17 +191,13 @@
 		99F1AFAD230A3BC200FB41FF /* CppTest */ = {
 			isa = PBXGroup;
 			children = (
-				9973821323AB01EB00398F9D /* ray.h */,
 				99A2080D23A87A30006A8DE3 /* class.cpp */,
 				99A2081023A87A30006A8DE3 /* class.hpp */,
 				99A2080C23A87A2F006A8DE3 /* main.cpp */,
 				99A2080F23A87A30006A8DE3 /* val_ref.h */,
 				99A2080E23A87A30006A8DE3 /* vector.h */,
-				99A2081323A94A28006A8DE3 /* image.h */,
-				9973820F23AA9E5E00398F9D /* shape.h */,
 				9973821023AA9FC400398F9D /* child.cpp */,
 				9973821223AAA00900398F9D /* child.h */,
-				9973821423AB645700398F9D /* tracer.h */,
 			);
 			path = CppTest;
 			sourceTree = "<group>";
@@ -174,6 +205,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		9973824A23B48A8700398F9D /* montelightTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9973824F23B48A8700398F9D /* Build configuration list for PBXNativeTarget "montelightTest" */;
+			buildPhases = (
+				9973824723B48A8700398F9D /* Sources */,
+				9973824823B48A8700398F9D /* Frameworks */,
+				9973824923B48A8700398F9D /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = montelightTest;
+			productName = montelightTest;
+			productReference = 9973824B23B48A8700398F9D /* montelightTest */;
+			productType = "com.apple.product-type.tool";
+		};
 		99A207D323A5B98E006A8DE3 /* CppTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 99A207D823A5B98E006A8DE3 /* Build configuration list for PBXNativeTarget "CppTest" */;
@@ -234,6 +282,9 @@
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = "Victor Li";
 				TargetAttributes = {
+					9973824A23B48A8700398F9D = {
+						CreatedOnToolsVersion = 11.1;
+					};
 					99A207D323A5B98E006A8DE3 = {
 						CreatedOnToolsVersion = 11.1;
 					};
@@ -260,11 +311,20 @@
 				99A207D323A5B98E006A8DE3 /* CppTest */,
 				99A207E023A5BB49006A8DE3 /* Leetcode */,
 				99A207F023A5C373006A8DE3 /* montelight */,
+				9973824A23B48A8700398F9D /* montelightTest */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		9973824723B48A8700398F9D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9973825923B48AB800398F9D /* main_pt.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		99A207D023A5B98E006A8DE3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -297,6 +357,24 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		9973825023B48A8700398F9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		9973825123B48A8700398F9D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		99A207D923A5B98E006A8DE3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -465,6 +543,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		9973824F23B48A8700398F9D /* Build configuration list for PBXNativeTarget "montelightTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9973825023B48A8700398F9D /* Debug */,
+				9973825123B48A8700398F9D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		99A207D823A5B98E006A8DE3 /* Build configuration list for PBXNativeTarget "CppTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
