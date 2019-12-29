@@ -23,9 +23,7 @@ struct Vector {
     //
     // default ctor
     // use member initializer list
-    Vector() : x(0), y(0), z(0) {
-        printf("call default ctor \n");
-    }
+    Vector() : x(0), y(0), z(0) {}
     // use assignment
     /*Vector(){
         x = 0; y = 0; z = 0;

@@ -42,36 +42,32 @@ vector<Shape *> testScene={
 
 int main()
 {
-    auto &scene = testScene;
-    Tracer tracer = Tracer(scene);
+    //auto &scene = testScene;
+    //Tracer tracer = Tracer(scene);
 
     Image img(64,64);
+	
     //Sphere sphere(Vector(0,0,3), 1, Vector(0), Vector(0));
     for(int i=0; i<64; i++){
         for(int j=0; j<64; j++){
             double u = double(i)/64;
             double v = double(j)/64;
-    //            img.setPixel(i, j, Vector(u, v, 1));
-            u = u*2-1;
+			img.setPixel(i, j, Vector(1, 1, 1));
+            /*u = u*2-1;
             v = v*2-1;
             Vector o = Vector(0, 0, 0);
             Vector d = Vector(u, v, 1) - o;
             d = d.norm();
             Ray r = Ray(o, d);
             pair<Shape *, double> trace_result = tracer.getIntersection(r);
-            double t = trace_result.second; // = sphere.intersects(r);
-    //            img.setPixel(i, j, Vector(t));
+            double t = trace_result.second;
             Vector hit = o + d * t;
             Vector n = Vector(0);
-    //            if(t!=0){
-    //                n = sphere.getNormal(hit).norm();
-                n = trace_result.first->getNormal(hit).norm();
-    //                n = (n+Vector(1))/2;
-    //            }
-            img.setPixel(i, j, n);
+            n = trace_result.first->getNormal(hit).norm();
+            img.setPixel(i, j, n);*/
         }
     }
-    //    img.save("victor");
-
+    img.save("render");
+	return 0;
 }
 

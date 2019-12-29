@@ -44,16 +44,16 @@ public:
 };
 
 Vector Image::getPixel(unsigned int x, unsigned int y) {
-  unsigned int index = (height - y - 1) * width + x;
-  return current[index];
+	unsigned int index = (height - y - 1) * width + x;
+	return current[index];
 }
 
 void Image::setPixel(unsigned int x, unsigned int y, const Vector &v) {
-  unsigned int index = (height - y - 1) * width + x;
-  pixels[index] += v;
-  samples[index] += 1;
-  current[index] = pixels[index] / samples[index];
-  //raw_samples[index].push_back(v);
+	unsigned int index = (height - y - 1) * width + x;
+	pixels[index] += v;
+	samples[index] += 1;
+	current[index] = pixels[index] / samples[index];
+	//raw_samples[index].push_back(v);
 }
 
 //Vector Image::getSurroundingAverage(int x, int y, int pattern) {
@@ -78,21 +78,21 @@ void Image::setPixel(unsigned int x, unsigned int y, const Vector &v) {
 //}
 
 inline double Image::toInt(double x) {
-  return pow(x, 1 / 2.2f) * 255; // gamma and remap to 0~255
+	return pow(x, 1 / 2.2f) * 255; // gamma and remap to 0~255
 }
 
 void Image::save(string filePrefix) {
-  string filename = filePrefix + ".ppm";
-  ofstream f;
-  f.open(filename.c_str(), ofstream::out);
-  // PPM header: P3 => RGB, width, height, and max RGB value
-  f << "P3 " << width << " " << height << " " << 255 << std::endl;
-  // For each pixel, write the space-separated RGB values
-  for (int i=0; i < width * height; i++) {
-    auto p = pixels[i] / samples[i];
-    unsigned int r = fmin(255, toInt(p.x)), g = fmin(255, toInt(p.y)), b = fmin(255, toInt(p.z));
-    f << r << " " << g << " " << b << std::endl;
-  }
+	string filename = filePrefix + ".ppm";
+	ofstream f;
+	f.open(filename.c_str(), ofstream::out);
+	// PPM header: P3 => RGB, width, height, and max RGB value
+	f << "P3 " << width << " " << height << " " << 255 << std::endl;
+	// For each pixel, write the space-separated RGB values
+	for (int i=0; i < width * height; i++) {
+		auto p = pixels[i] / samples[i];
+		unsigned int r = fmin(255, toInt(p.x)), g = fmin(255, toInt(p.y)), b = fmin(255, toInt(p.z));
+		f << r << " " << g << " " << b << std::endl;
+	}
 }
 
 //void Image::saveHistogram(std::string filePrefix, int maxIters) {
@@ -111,8 +111,8 @@ void Image::save(string filePrefix) {
 //}
 
 Image::~Image() {
-  delete[] pixels;
-  delete[] samples;
+	delete[] pixels;
+	delete[] samples;
 }
 
 #endif /* image_h */
