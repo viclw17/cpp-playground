@@ -7,68 +7,35 @@
 //
 
 #include <iostream>
-#include "stdio.h"
 
-#include "class.hpp"
-#include "child.h"
-#include "val_ref.h"
-
-
-//val_ref.h
-//int main() {
-//    int x = 3;
-//    f1(x);
-//    cout << "by val: " << x << endl;
-//    f2(x);
-//    cout << "by ref: " << x << endl;
-//    return 1;
-//}
-
-#ifdef PBRT_FLOAT_AS_DOUBLE
-  typedef double Float;
-#else
-  typedef float Float;
-#endif  // PBRT_FLOAT_AS_DOUBLE
-
-inline bool Quadratic(float a, float b, float c, float *t0, float *t1) {
-    // Find quadratic discriminant
-    double discrim = (double)b * (double)b - 4 * (double)a * (double)c;
-    if (discrim < 0) return false;
-    double rootDiscrim = std::sqrt(discrim);
-
-    // Compute quadratic _t_ values
-    double q;
-    if (b < 0)
-        q = -.5 * (b - rootDiscrim);
-    else
-        q = -.5 * (b + rootDiscrim);
-    *t0 = q / a;
-    *t1 = c / q;
-    if (*t0 > *t1) std::swap(*t0, *t1);
-    return true;
-}
-
-int main()
-{
-    // Default constructor called automatically
-    // when the object is created
-//    class1 c; // default
-//    c = class1(1,2,3);
-//    class1* c_ptr = &c;
-//    cout << c_ptr << endl; // address
-//    cout << "a thru ptr: " << c_ptr->a << endl;
-//    cout << "a thru dot: " << c.a << endl;
-//    cout << "b: " << c.b << endl;
-//    cout << c.getC() << endl;
-//    c.setC(333);
-//    cout << c.getC() << endl;
+#include "const_test.h"
+#include "class_test.h"
+#include "argu_test.h"
+int main(){
+//    argu_test argu_test;
+//    argu_test.test();
+        
+//    class_test class_test;
+//    class_test.test();
+//    class_test.test_child();
     
-    child1 c;
-    Vector v = c.child_virtual1();
-    cout << v.print();
+    const_test const_test;
+    const_test.test();
+    Dog d;
+    int i=9;
+    d.setAge(i); // we only want to set DOG's age with i, without modifiy i
+    //cout << i << endl;
     
-    float t0 = 1
+    const string& n = d.getName1(); //n="modify";
+//    string&       n = d.getName2(); n="modify";
+//    string        n =  d.getName3();
+    cout << "new addr: " << &n << endl << n << endl;
     
+    Dog d1;
+    d1.printDogName();
+    const Dog d2;
+    d2.printDogName();
+
     
 //    Vector v0;
 //    cout << "v0: " << v0.print();

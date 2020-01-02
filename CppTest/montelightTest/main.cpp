@@ -6,68 +6,98 @@
 //  Copyright © 2019 Victor Li. All rights reserved.
 //
 
-#include <stdio.h>
+
 
 #include "vector.h"
 #include "image.h"
 #include "shape.h"
 #include "ray.h"
 #include "tracer.h"
+#include "triangle.h"
 using namespace std;
 
-vector<Shape *> simpleScene = {
-  // Left sphere
-  new Sphere(Vector(1e5+1,40.8,81.6), 1e5f, Vector(.75,.25,.25), Vector()),
-  // Right sphere
-  new Sphere(Vector(-1e5+99,40.8,81.6), 1e5f, Vector(.25,.25,.75), Vector()),
-  // Back sphere
-  new Sphere(Vector(50,40.8, 1e5), 1e5f, Vector(.75,.75,.75), Vector()),
-  // Floor sphere
-  new Sphere(Vector(50, 1e5, 81.6), 1e5f, Vector(.75,.75,.75), Vector()),
-  // Roof sphere
-  new Sphere(Vector(50,-1e5+81.6,81.6), 1e5f, Vector(.75,.75,.75), Vector()),
-  // Traditional mirror sphere
-  new Sphere(Vector(27,16.5,47), 16.5f, Vector(1,1,1) * 0.799, Vector()),
-  // Traditional glass sphere
-  new Sphere(Vector(73,16.5,78), 16.5f, Vector(1,1,1) * 0.799, Vector()),
-  // Light source
-  //new Sphere(Vector(50,681.6-.27,81.6), 600, Vector(1,1,1) * 0.5, Vector(12,12,12))
-  new Sphere(Vector(50,65.1,81.6), 8.5, Vector(), Vector(4,4,4) * 100) // Small = 1.5, Large = 8.5
-};
+
+
+double z = 5;
+double r = 1000;
+double wall_offset = 1004;
+Vector red = Vector(.75,.25,.25);
+Vector blue = Vector(.25,.25,.75);
+Vector white = Vector(.75);
 
 vector<Shape *> testScene={
-    new Sphere(Vector(0,0,3),1,Vector(0),Vector(0)),
-    new Sphere(Vector(0,1,3),1,Vector(0),Vector(0))
+    // floor
+    new Sphere(Vector( 0,-wall_offset, 0), r, white, Vector(),DIFF),
+    new Sphere(Vector( 0, wall_offset, 0), r, white, Vector(),DIFF),
+    new Sphere(Vector(-wall_offset, 0, 0), r, red,   Vector(),DIFF),
+    new Sphere(Vector( wall_offset, 0, 0), r, blue,  Vector(),DIFF),
+    new Sphere(Vector( 0,0,wall_offset+5), r, white, Vector(),DIFF),
+    new Sphere(Vector( 0,0,-wall_offset),  r, white, Vector(),DIFF),
+    
+    // light
+    new Sphere(Vector( 0,  2, z), .5, Vector(1), Vector(1) * 400, LIGHT),
+//    new Sphere(Vector(-2, -2, z), .5, Vector(1,0,0), Vector(1,0,0) * 200, LIGHT),
+//    new Sphere(Vector( 2, -2, z), .5, Vector(0,1,0), Vector(0,1,0) * 200, LIGHT),
+    
+    // spheres
+//    new Sphere(Vector( 0,  -1, z),    1, white, Vector(), DIFF),
+//    new Sphere(Vector( 1.5, 1, z+.5), 1, white, Vector(), DIFF),
+//    new Sphere(Vector(-1.5, 0, z+.5), 1, white, Vector(), DIFF),
+//    new Sphere(Vector( 0, 0, z), .5, white, Vector(), DIFF),
+    
+    new Triangle(Vector(-1, -1, z+1), Vector(1, -1, z+1), Vector(-1, 1, z+1), white, Vector()),
+    new Triangle(Vector(-1,  1, z+1), Vector(1,  1, z+1), Vector( 1,-1, z+1), white, Vector())
+//    new Triangle(Vector(-.5, 0, z), Vector(.5, 0, z-2), Vector(0, 1, z-2), white, Vector())
 };
 
-int main()
-{
-    //auto &scene = testScene;
-    //Tracer tracer = Tracer(scene);
 
-    Image img(64,64);
-	
-    //Sphere sphere(Vector(0,0,3), 1, Vector(0), Vector(0));
-    for(int i=0; i<64; i++){
-        for(int j=0; j<64; j++){
-            double u = double(i)/64;
-            double v = double(j)/64;
-			img.setPixel(i, j, Vector(1, 1, 1));
-            /*u = u*2-1;
-            v = v*2-1;
-            Vector o = Vector(0, 0, 0);
-            Vector d = Vector(u, v, 1) - o;
-            d = d.norm();
-            Ray r = Ray(o, d);
-            pair<Shape *, double> trace_result = tracer.getIntersection(r);
-            double t = trace_result.second;
-            Vector hit = o + d * t;
-            Vector n = Vector(0);
-            n = trace_result.first->getNormal(hit).norm();
-            img.setPixel(i, j, n);*/
+
+int main(){
+    auto &scene = testScene;
+    Tracer tracer = Tracer(scene);
+
+    int w = 512;
+    int h = 512;
+//    w = 256;
+//    h = 256;
+    Image img(w,h);
+    unsigned int SAMPLES = 1;
+//    Sphere sphere(Vector(0,0,3), 1, Vector(0), Vector(0));
+    for(int y=0; y<h; y++){
+        fprintf(stderr, "\rRendering (%d spp) %5.2f%%", SAMPLES, 100.0*y / (h - 1));
+        for(int x=0; x<w; x++){
+            for (int s = 0; s < SAMPLES; ++s) {
+//                double u = double(x)/w;
+//                double v = double(y)/h;
+                double u = double(x + drand48())/double(w); // 0~1
+                double v = double(y + drand48())/double(h);
+                //img.setPixel(y, x, Vector(u, v, 0)); // UV color
+                u = u*2-1;
+                v = v*2-1;
+                Vector o = Vector(0, 0, 0);
+                Vector d = Vector(u, v, 1.4) - o;
+                // generate ray
+                d = d.norm();
+                Ray r = Ray(o, d);
+                auto result = tracer.getIntersection(r); // pair<Shape *, double>
+                Shape *hitObj = result.first;
+                Vector hitPos = r.origin + r.direction * result.second;
+                Vector norm = Vector();
+                Vector radiance = Vector();
+                if(hitObj != nullptr){
+                    norm = hitObj->getNormal(hitPos);
+                    radiance = tracer.getRadiance(r, 0);
+                }
+//                else{
+//                    radiance = Vector(0.15f,0.21f,0.3f);
+//                }
+//                Vector normal = (norm+Vector(1))/2;
+//                img.setPixel(x, y, normal/SAMPLES);
+                img.setPixel(x, y, radiance/SAMPLES);
+            }
         }
     }
-    img.save("render");
-	return 0;
+        img.save("victor");
+
 }
 

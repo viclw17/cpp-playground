@@ -20,22 +20,13 @@ struct Vector {
     double x;
     double y;
     double z;
-    //
-    // default ctor
-    // use member initializer list
-    Vector() : x(0), y(0), z(0) {}
-    // use assignment
-    /*Vector(){
-        x = 0; y = 0; z = 0;
-        printf("call default ctor \n");
-    }*/
+    
+    Vector() : x(0), y(0), z(0) { /*printf("call default ctor \n");*/ } // use member initializer list
+    //Vector(){ x = 0; y = 0; z = 0; printf("call default ctor \n"); } // use assignment
 
-    // copy ctor
-    // it should not affect the COPIED vector
-    Vector(const Vector& o) : x(o.x), y(o.y), z(o.z) { 
-//        printf("call copy ctor \n");
-    }
-
+    // use const, it should not affect the COPIED vector!
+    Vector(const Vector& o) : x(o.x), y(o.y), z(o.z) { /*printf("call copy ctor \n");*/ }
+    
     // 'x' cannot be modified because it is being accessed through a const object
     //Vector(Vector& o) : x(o.x), y(o.y), z(o.z) {
     //    o.x = 4; // modified!!!
@@ -43,13 +34,11 @@ struct Vector {
     //}
 
     // construct with elements
-//    Vector(double x_=0, double y_=0, double z_=0) : x(x_), y(y_), z(z_) {
-//        printf("call assign ctor \n");
-//    }
-    Vector(double v_) : x(v_), y(v_), z(v_) {}
-    Vector(double x_, double y_, double z_) : x(x_), y(y_), z(z_) {
-//        printf("call assign ctor \n");
-    }
+    //Vector(double x_=0, double y_=0, double z_=0) : x(x_), y(y_), z(z_) { printf("call assign ctor \n"); }
+    Vector(double v_) : x(v_), y(v_), z(v_) { /*printf("call assign ctor \n");*/ }
+    Vector(double x_, double y_, double z_) : x(x_), y(y_), z(z_) { /*printf("call assign ctor \n");*/ }
+
+    
 
     // instead of modifying either, return the sum as a new vector
     inline Vector operator+(const Vector &o) const {
@@ -71,6 +60,7 @@ struct Vector {
     inline Vector& abs();
     inline double min();
     inline double max();
+    inline double length();
 
     string print() {
         return
@@ -124,6 +114,9 @@ inline Vector& Vector::clamp() {
   };
   x = clampDouble(x); y = clampDouble(y); z = clampDouble(z);
   return *this;
+}
+inline double Vector::length(){
+    return sqrt(x*x+y*y+z*z);
 }
 
 #endif /* vector_h */

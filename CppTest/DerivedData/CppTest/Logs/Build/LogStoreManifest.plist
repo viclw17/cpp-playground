@@ -6,6 +6,40 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
+		<key>0F0688AD-3874-4FF0-8C7E-B05283C93A0D</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>0F0688AD-3874-4FF0-8C7E-B05283C93A0D.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>CppTest project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>montelightTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build montelightTest</string>
+			<key>timeStartedRecording</key>
+			<real>599627921.69259596</real>
+			<key>timeStoppedRecording</key>
+			<real>599627922.584903</real>
+			<key>title</key>
+			<string>Build montelightTest</string>
+			<key>uniqueIdentifier</key>
+			<string>0F0688AD-3874-4FF0-8C7E-B05283C93A0D</string>
+		</dict>
 		<key>2DE51142-86D8-4D85-850C-04CBAF7882D8</key>
 		<dict>
 			<key>className</key>
@@ -40,7 +74,7 @@
 			<key>uniqueIdentifier</key>
 			<string>2DE51142-86D8-4D85-850C-04CBAF7882D8</string>
 		</dict>
-		<key>5366C885-A2F9-4D3E-8AC2-9B06E13126E9</key>
+		<key>3998BEF4-AF28-427B-AE60-2A3D677DFBB5</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -49,13 +83,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>5366C885-A2F9-4D3E-8AC2-9B06E13126E9.xcactivitylog</string>
+			<string>3998BEF4-AF28-427B-AE60-2A3D677DFBB5.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>CppTest project</string>
@@ -66,15 +100,15 @@
 			<key>signature</key>
 			<string>Build montelightTest</string>
 			<key>timeStartedRecording</key>
-			<real>599035897.95795906</real>
+			<real>599627728.70357203</real>
 			<key>timeStoppedRecording</key>
-			<real>599035898.91655898</real>
+			<real>599627729.80442405</real>
 			<key>title</key>
 			<string>Build montelightTest</string>
 			<key>uniqueIdentifier</key>
-			<string>5366C885-A2F9-4D3E-8AC2-9B06E13126E9</string>
+			<string>3998BEF4-AF28-427B-AE60-2A3D677DFBB5</string>
 		</dict>
-		<key>6258450C-05FD-4D70-91C2-5732F2DAEF6F</key>
+		<key>45ABC865-CA90-482D-9971-AB22373414CA</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -83,7 +117,7 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>6258450C-05FD-4D70-91C2-5732F2DAEF6F.xcactivitylog</string>
+			<string>45ABC865-CA90-482D-9971-AB22373414CA.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -94,21 +128,55 @@
 			<key>schemeIdentifier-containerName</key>
 			<string>CppTest project</string>
 			<key>schemeIdentifier-schemeName</key>
+			<string>montelightTest</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Build montelightTest</string>
+			<key>timeStartedRecording</key>
+			<real>599627521.06777596</real>
+			<key>timeStoppedRecording</key>
+			<real>599627521.68882501</real>
+			<key>title</key>
+			<string>Build montelightTest</string>
+			<key>uniqueIdentifier</key>
+			<string>45ABC865-CA90-482D-9971-AB22373414CA</string>
+		</dict>
+		<key>4C660060-E834-4682-A9B1-867A2DF780D6</key>
+		<dict>
+			<key>className</key>
+			<string>IDEActivityLogSection</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>4C660060-E834-4682-A9B1-867A2DF780D6.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>W</string>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>CppTest project</string>
+			<key>schemeIdentifier-schemeName</key>
 			<string>CppTest</string>
 			<key>schemeIdentifier-sharedScheme</key>
 			<integer>1</integer>
 			<key>signature</key>
 			<string>Build CppTest</string>
 			<key>timeStartedRecording</key>
-			<real>599036766.84412098</real>
+			<real>599627386.58812594</real>
 			<key>timeStoppedRecording</key>
-			<real>599036767.34145796</real>
+			<real>599627387.65848303</real>
 			<key>title</key>
 			<string>Build CppTest</string>
 			<key>uniqueIdentifier</key>
-			<string>6258450C-05FD-4D70-91C2-5732F2DAEF6F</string>
+			<string>4C660060-E834-4682-A9B1-867A2DF780D6</string>
 		</dict>
-		<key>6877761C-22C8-446F-8BCD-1C56A6D8AC04</key>
+		<key>8124EDC0-2E8E-4FF2-8F86-02AB654BAFE3</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -117,47 +185,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>6877761C-22C8-446F-8BCD-1C56A6D8AC04.xcactivitylog</string>
+			<string>8124EDC0-2E8E-4FF2-8F86-02AB654BAFE3.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>CppTest project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>CppTest</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Build CppTest</string>
-			<key>timeStartedRecording</key>
-			<real>598472701.61850798</real>
-			<key>timeStoppedRecording</key>
-			<real>598472702.42909598</real>
-			<key>title</key>
-			<string>Build CppTest</string>
-			<key>uniqueIdentifier</key>
-			<string>6877761C-22C8-446F-8BCD-1C56A6D8AC04</string>
-		</dict>
-		<key>DD067D9C-8448-471A-973E-F9BBF2DE4A65</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>DD067D9C-8448-471A-973E-F9BBF2DE4A65.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>E</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>CppTest project</string>
@@ -168,15 +202,15 @@
 			<key>signature</key>
 			<string>Build montelightTest</string>
 			<key>timeStartedRecording</key>
-			<real>599034623.06198394</real>
+			<real>599627679.28516304</real>
 			<key>timeStoppedRecording</key>
-			<real>599034624.34790802</real>
+			<real>599627679.88387203</real>
 			<key>title</key>
 			<string>Build montelightTest</string>
 			<key>uniqueIdentifier</key>
-			<string>DD067D9C-8448-471A-973E-F9BBF2DE4A65</string>
+			<string>8124EDC0-2E8E-4FF2-8F86-02AB654BAFE3</string>
 		</dict>
-		<key>DEE5C0FB-2003-49C6-B838-1D03253D646E</key>
+		<key>A9FA56F6-7B2E-4AE0-9109-7E1069469B4F</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogSection</string>
@@ -185,13 +219,13 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>DEE5C0FB-2003-49C6-B838-1D03253D646E.xcactivitylog</string>
+			<string>A9FA56F6-7B2E-4AE0-9109-7E1069469B4F.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>schemeIdentifier-containerName</key>
 			<string>CppTest project</string>
@@ -202,47 +236,13 @@
 			<key>signature</key>
 			<string>Build montelightTest</string>
 			<key>timeStartedRecording</key>
-			<real>599035683.51787901</real>
+			<real>599627773.50632095</real>
 			<key>timeStoppedRecording</key>
-			<real>599035684.48873699</real>
+			<real>599627774.38989699</real>
 			<key>title</key>
 			<string>Build montelightTest</string>
 			<key>uniqueIdentifier</key>
-			<string>DEE5C0FB-2003-49C6-B838-1D03253D646E</string>
-		</dict>
-		<key>F0596C6E-A2D4-4612-934B-6281B9200B6B</key>
-		<dict>
-			<key>className</key>
-			<string>IDEActivityLogSection</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>F0596C6E-A2D4-4612-934B-6281B9200B6B.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>CppTest project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>montelightTest</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Build montelightTest</string>
-			<key>timeStartedRecording</key>
-			<real>599034735.70143604</real>
-			<key>timeStoppedRecording</key>
-			<real>599034736.606637</real>
-			<key>title</key>
-			<string>Build montelightTest</string>
-			<key>uniqueIdentifier</key>
-			<string>F0596C6E-A2D4-4612-934B-6281B9200B6B</string>
+			<string>A9FA56F6-7B2E-4AE0-9109-7E1069469B4F</string>
 		</dict>
 	</dict>
 </dict>

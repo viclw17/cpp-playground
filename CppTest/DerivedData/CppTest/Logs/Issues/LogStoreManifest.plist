@@ -6,7 +6,7 @@
 	<integer>10</integer>
 	<key>logs</key>
 	<dict>
-		<key>43AFC6F4-2505-4BBE-8044-8F3A084559BA</key>
+		<key>19685286-A704-4C0B-B4BC-DA2F0C53949C</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -15,26 +15,26 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
 			<key>fileName</key>
-			<string>43AFC6F4-2505-4BBE-8044-8F3A084559BA.xcactivitylog</string>
+			<string>19685286-A704-4C0B-B4BC-DA2F0C53949C.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>signature</key>
 			<string>montelightTest-gjbahyrdbesbdogmkvtiysuupsdw</string>
 			<key>timeStartedRecording</key>
-			<real>599035898.05006003</real>
+			<real>599627921.71960199</real>
 			<key>timeStoppedRecording</key>
-			<real>599035898.91148996</real>
+			<real>599627922.56939697</real>
 			<key>title</key>
 			<string>Build target montelightTest</string>
 			<key>uniqueIdentifier</key>
-			<string>43AFC6F4-2505-4BBE-8044-8F3A084559BA</string>
+			<string>19685286-A704-4C0B-B4BC-DA2F0C53949C</string>
 		</dict>
-		<key>5C9D0A45-C6BF-4C08-8269-3EA098D52EF7</key>
+		<key>4CBFAD0A-5B1C-4FB4-B253-0A316841D815</key>
 		<dict>
 			<key>className</key>
 			<string>IDEActivityLogMajorGroupSection</string>
@@ -43,24 +43,24 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.target.product-type.tool</string>
 			<key>fileName</key>
-			<string>5C9D0A45-C6BF-4C08-8269-3EA098D52EF7.xcactivitylog</string>
+			<string>4CBFAD0A-5B1C-4FB4-B253-0A316841D815.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
 			<dict>
 				<key>highLevelStatus</key>
-				<string>S</string>
+				<string>W</string>
 			</dict>
 			<key>signature</key>
 			<string>CppTest-gjbahyrdbesbdogmkvtiysuupsdw</string>
 			<key>timeStartedRecording</key>
-			<real>599036774.80897403</real>
+			<real>599627386.60466695</real>
 			<key>timeStoppedRecording</key>
-			<real>599036775.39272404</real>
+			<real>599627387.65368605</real>
 			<key>title</key>
 			<string>Build target CppTest</string>
 			<key>uniqueIdentifier</key>
-			<string>5C9D0A45-C6BF-4C08-8269-3EA098D52EF7</string>
+			<string>4CBFAD0A-5B1C-4FB4-B253-0A316841D815</string>
 		</dict>
 		<key>6698233E-0F8C-46E5-BD67-B874FC92C6E3</key>
 		<dict>

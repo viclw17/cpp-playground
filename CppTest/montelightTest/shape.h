@@ -13,29 +13,37 @@
 
 #define EPSILON 0.001f
 
+enum Material { DIFF, REFL, REFR, LIGHT};  // material types, used in radiance()
+
 struct Shape {
     Vector color;
     Vector emit;
-    //
-    Shape(const Vector color_, const Vector emit_) : 
-        color(color_), emit(emit_){}
+    Material m;
+
+    Shape(const Vector color_, const Vector emit_, const Material m_) :
+        color(color_), emit(emit_), m(m_){}
 
     virtual double intersects(const Ray &r) const { return 0; }
-    virtual Vector randomPoint() const { return Vector(); }
     virtual Vector getNormal(const Vector &p) const { return Vector(); }
+    virtual Vector randomPoint() const { return Vector(); }
 };
+
+
+
 
 struct Sphere : Shape {
     Vector center;
     double radius;
-    //
-    Sphere(const Vector center_, double radius_, const Vector color_, const Vector emit_) :
-        Shape(color_, emit_), center(center_), radius(radius_) {}
+    
+    Sphere(const Vector center_, double radius_, const Vector color_, const Vector emit_, const Material m_ = DIFF) :
+        Shape(color_, emit_, m_), center(center_), radius(radius_) {}
 
     double intersects(const Ray& r) const;
-    //Vector randomPoint() const;
+    Vector randomPoint() const;
     Vector getNormal(const Vector& p) const;
 };
+
+
 
 double Sphere::intersects(const Ray& r) const {
     // Find if, and at what distance, the ray intersects with this object
@@ -65,10 +73,28 @@ double Sphere::intersects(const Ray& r) const {
     return 0;
 }
 
+
+
 Vector Sphere::getNormal(const Vector &p) const {
     // Point must have collided with surface of sphere which is at radius
     // Normalize the normal by using radius instead of a sqrt call
     return (p - center) / radius;
+}
+
+
+
+Vector Sphere::randomPoint() const {
+    // TODO: Improved methods of random point generation as this is not 100% even
+    // See: https://www.jasondavies.com/maps/random-points/
+    //
+    // Get random spherical coordinates on light
+    double theta = drand48() * M_PI;
+    double phi = drand48() * 2 * M_PI;
+    // Convert to Cartesian and scale by radius
+    double dxr = radius * sin(theta) * cos(phi);
+    double dyr = radius * sin(theta) * sin(phi);
+    double dzr = radius * cos(theta);
+    return Vector(center.x + dxr, center.y + dyr, center.z + dzr);
 }
 
 
