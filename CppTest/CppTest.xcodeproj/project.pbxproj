@@ -196,13 +196,13 @@
 			children = (
 				9973826A23BD967600398F9D /* argu_test.h */,
 				9973826523BD967600398F9D /* class_test.h */,
-				9973826423BD967600398F9D /* class1.cpp */,
 				9973826723BD967600398F9D /* class1.hpp */,
+				9973826423BD967600398F9D /* class1.cpp */,
 				9973826323BD967600398F9D /* const_test.h */,
-				9973826923BD967600398F9D /* main.cpp */,
-				9973826623BD967600398F9D /* memory.h */,
 				9973826823BD967600398F9D /* struct.h */,
 				9973826B23BD967600398F9D /* vector.h */,
+				9973826623BD967600398F9D /* memory.h */,
+				9973826923BD967600398F9D /* main.cpp */,
 			);
 			path = CppTest;
 			sourceTree = "<group>";

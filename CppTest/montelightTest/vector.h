@@ -34,7 +34,7 @@ struct Vector {
     //}
 
     // construct with elements
-    //Vector(double x_=0, double y_=0, double z_=0) : x(x_), y(y_), z(z_) { printf("call assign ctor \n"); }
+//    Vector(double x_=0, double y_=0, double z_=0) : x(x_), y(y_), z(z_) { printf("call assign ctor \n"); }
     Vector(double v_) : x(v_), y(v_), z(v_) { /*printf("call assign ctor \n");*/ }
     Vector(double x_, double y_, double z_) : x(x_), y(y_), z(z_) { /*printf("call assign ctor \n");*/ }
 
@@ -42,7 +42,6 @@ struct Vector {
 
     // instead of modifying either, return the sum as a new vector
     inline Vector operator+(const Vector &o) const {
-//        printf("call vector add... \n");
         return Vector(x + o.x, y + o.y, z + o.z);
     }
     inline Vector operator-(const Vector &o) const;

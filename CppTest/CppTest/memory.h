@@ -8,6 +8,7 @@
 
 #ifndef memory_h
 #define memory_h
+// https://www.youtube.com/watch?v=IO0EmgOagMY&list=WL&index=2&t=15s
 
 
 #endif /* memory_h */
