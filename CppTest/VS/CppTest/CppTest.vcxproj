@@ -18,6 +18,20 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\CppTest\argu_test.h" />
+    <ClInclude Include="..\..\CppTest\class1.hpp" />
+    <ClInclude Include="..\..\CppTest\class_test.h" />
+    <ClInclude Include="..\..\CppTest\concurrent.h" />
+    <ClInclude Include="..\..\CppTest\const_test.h" />
+    <ClInclude Include="..\..\CppTest\memory.h" />
+    <ClInclude Include="..\..\CppTest\struct.h" />
+    <ClInclude Include="..\..\CppTest\vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\CppTest\class1.cpp" />
+    <ClCompile Include="..\..\CppTest\main.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{3DB7820C-5A63-40E6-879A-C46625017F2F}</ProjectGuid>
@@ -137,17 +151,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\CppTest\child.cpp" />
-    <ClCompile Include="..\..\CppTest\class.cpp" />
-    <ClCompile Include="..\..\CppTest\main.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\CppTest\child.h" />
-    <ClInclude Include="..\..\CppTest\class.hpp" />
-    <ClInclude Include="..\..\CppTest\vector.h" />
-    <ClInclude Include="val_ref.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

@@ -30,6 +30,9 @@
     <ClInclude Include="..\..\montelightTest\vector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\montelightTest\triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\montelightTest\main.cpp">

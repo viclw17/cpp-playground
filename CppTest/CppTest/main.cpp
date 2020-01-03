@@ -11,6 +11,7 @@
 #include "const_test.h"
 #include "class_test.h"
 #include "argu_test.h"
+#include "concurrent.h"
 int main(){
 //    argu_test argu_test;
 //    argu_test.test();
@@ -19,22 +20,25 @@ int main(){
 //    class_test.test();
 //    class_test.test_child();
     
-    const_test const_test;
-    const_test.test();
-    Dog d;
-    int i=9;
-    d.setAge(i); // we only want to set DOG's age with i, without modifiy i
+    //const_test const_test;
+    //const_test.test();
+    //Dog d;
+    //int i=9;
+    //d.setAge(i); // we only want to set DOG's age with i, without modifiy i
     //cout << i << endl;
     
-    const string& n = d.getName1(); //n="modify";
+    //const string& n = d.getName1(); //n="modify";
 //    string&       n = d.getName2(); n="modify";
 //    string        n =  d.getName3();
-    cout << "new addr: " << &n << endl << n << endl;
+    //cout << "new addr: " << &n << endl << n << endl;
     
-    Dog d1;
-    d1.printDogName();
-    const Dog d2;
-    d2.printDogName();
+    //Dog d1;
+    //d1.printDogName();
+    //const Dog d2;
+    //d2.printDogName();
+
+    concurrent concurrent;
+    concurrent.main();
 
     
 //    Vector v0;

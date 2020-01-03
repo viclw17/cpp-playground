@@ -19,7 +19,8 @@ using namespace std;
 
 
 double z = 5;
-double r = 1000;
+double R = 1000;
+double r = .5;
 double wall_offset = 1004;
 Vector red = Vector(.75,.25,.25);
 Vector blue = Vector(.25,.25,.75);
@@ -27,27 +28,36 @@ Vector white = Vector(.75);
 
 vector<Shape *> testScene={
     // floor
-    new Sphere(Vector( 0,-wall_offset, 0), r, white, Vector(),DIFF),
-    new Sphere(Vector( 0, wall_offset, 0), r, white, Vector(),DIFF),
-    new Sphere(Vector(-wall_offset, 0, 0), r, red,   Vector(),DIFF),
-    new Sphere(Vector( wall_offset, 0, 0), r, blue,  Vector(),DIFF),
-    new Sphere(Vector( 0,0,wall_offset+5), r, white, Vector(),DIFF),
-    new Sphere(Vector( 0,0,-wall_offset),  r, white, Vector(),DIFF),
+    new Sphere(Vector( 0,-wall_offset, 0), R, white, Vector(),DIFF),
+    new Sphere(Vector( 0, wall_offset, 0), R, white, Vector(),DIFF),
+    new Sphere(Vector(-wall_offset, 0, 0), R, red  , Vector(),DIFF),
+    new Sphere(Vector( wall_offset, 0, 0), R, blue , Vector(),DIFF),
+    new Sphere(Vector( 0,0,wall_offset+5), R, white, Vector(),DIFF),
+    new Sphere(Vector( 0,0,-wall_offset),  R, white, Vector(),DIFF),
     
     // light
-    new Sphere(Vector( 0,  2, z), .5, Vector(1), Vector(1) * 400, LIGHT),
-//    new Sphere(Vector(-2, -2, z), .5, Vector(1,0,0), Vector(1,0,0) * 200, LIGHT),
-//    new Sphere(Vector( 2, -2, z), .5, Vector(0,1,0), Vector(0,1,0) * 200, LIGHT),
+    new Sphere(Vector( 0, 3, z-1), .5, Vector(1), Vector(1) * 400, LIGHT),
+    //new Sphere(Vector(-2, -2, z), .5, Vector(1,0,0), Vector(1,0,0) * 200, LIGHT),
+    //new Sphere(Vector( 2, -2, z), .5, Vector(0,1,0), Vector(0,1,0) * 200, LIGHT),
     
     // spheres
-//    new Sphere(Vector( 0,  -1, z),    1, white, Vector(), DIFF),
-//    new Sphere(Vector( 1.5, 1, z+.5), 1, white, Vector(), DIFF),
-//    new Sphere(Vector(-1.5, 0, z+.5), 1, white, Vector(), DIFF),
-//    new Sphere(Vector( 0, 0, z), .5, white, Vector(), DIFF),
+    //new Sphere(Vector( 0,  -1, z),    r, white, Vector(), REFL),
+    //new Sphere(Vector( 1.5, 1, z+.5), r, red, Vector(), REFL),
+    //new Sphere(Vector(-1.5, 0, z+.5), r, blue, Vector(), REFL),
+
+    // 9 spheres
+    //new Sphere(Vector( 0, 0, z), r, white, Vector(), REFL),
+    //new Sphere(Vector(-1, 0, z), r, white, Vector(), REFL),
+    //new Sphere(Vector( 1, 0, z), r, white, Vector(), REFL),
+    //new Sphere(Vector(0, -1, z), r, white, Vector(), REFL),
+    //new Sphere(Vector( 0, 1, z), r, white, Vector(), REFL),
+    //new Sphere(Vector(-1,-1, z), r, white, Vector(), REFL),
+    //new Sphere(Vector( 1,-1, z), r, white, Vector(), REFL),
+    //new Sphere(Vector(-1, 1, z), r, white, Vector(), REFL),
+    //new Sphere(Vector( 1, 1, z), r, white, Vector(), REFL),
     
     new Triangle(Vector(-1, -1, z+1), Vector(1, -1, z+1), Vector(-1, 1, z+1), white, Vector()),
     new Triangle(Vector(-1,  1, z+1), Vector(1,  1, z+1), Vector( 1,-1, z+1), white, Vector())
-//    new Triangle(Vector(-.5, 0, z), Vector(.5, 0, z-2), Vector(0, 1, z-2), white, Vector())
 };
 
 
@@ -63,9 +73,9 @@ int main(){
     Image img(w,h);
     unsigned int SAMPLES = 1;
 //    Sphere sphere(Vector(0,0,3), 1, Vector(0), Vector(0));
-    for(int y=0; y<h; y++){
+    for(int y=0; y<h/2; y++){
         fprintf(stderr, "\rRendering (%d spp) %5.2f%%", SAMPLES, 100.0*y / (h - 1));
-        for(int x=0; x<w; x++){
+        for(int x=0; x<w/2; x++){
             for (int s = 0; s < SAMPLES; ++s) {
 //                double u = double(x)/w;
 //                double v = double(y)/h;

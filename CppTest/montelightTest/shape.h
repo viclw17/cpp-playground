@@ -10,10 +10,23 @@
 #define shape_h
 #include "vector.h"
 #include "ray.h"
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 #define EPSILON 0.001f
 
+#ifdef __APPLE__
+#else
+#define drand48() ((double)rand()/RAND_MAX)
+//#define M_PI 3.14159265358979323846
+//#define M_1_PI 0.318309886183790671538
+#endif
+
+
+
 enum Material { DIFF, REFL, REFR, LIGHT};  // material types, used in radiance()
+
+
 
 struct Shape {
     Vector color;

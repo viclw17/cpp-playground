@@ -127,6 +127,7 @@
     <ClInclude Include="..\..\montelightTest\ray.h" />
     <ClInclude Include="..\..\montelightTest\shape.h" />
     <ClInclude Include="..\..\montelightTest\tracer.h" />
+    <ClInclude Include="..\..\montelightTest\triangle.h" />
     <ClInclude Include="..\..\montelightTest\vector.h" />
   </ItemGroup>
   <ItemGroup>
