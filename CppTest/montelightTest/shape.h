@@ -31,12 +31,14 @@ enum Material { DIFF, REFL, REFR, LIGHT};  // material types, used in radiance()
 struct Shape {
     Vector color;
     Vector emit;
-    Material m;
+    Material material;
 
-    Shape(const Vector color_, const Vector emit_, const Material m_) :
-        color(color_), emit(emit_), m(m_){}
+    Shape(const Vector color_, const Vector emit_, const Material material_) :
+        color(color_), emit(emit_), material(material_){}
 
     virtual double intersects(const Ray &r) const { return 0; }
+    // pbrt
+    //virtual bool Intersect(const Ray &ray, float *tHit, SurfaceInteraction *isect) const = 0;
     virtual Vector getNormal(const Vector &p) const { return Vector(); }
     virtual Vector randomPoint() const { return Vector(); }
 };
@@ -45,11 +47,12 @@ struct Shape {
 
 
 struct Sphere : Shape {
+    // sphere
     Vector center;
     double radius;
     
-    Sphere(const Vector center_, double radius_, const Vector color_, const Vector emit_, const Material m_ = DIFF) :
-        Shape(color_, emit_, m_), center(center_), radius(radius_) {}
+    Sphere(const Vector center_, double radius_, const Vector color_, const Vector emit_, const Material material_ = DIFF) :
+        Shape(color_, emit_, material_), center(center_), radius(radius_) {}
 
     double intersects(const Ray& r) const;
     Vector randomPoint() const;

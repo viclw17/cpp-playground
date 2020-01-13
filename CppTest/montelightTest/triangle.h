@@ -10,7 +10,8 @@
 #define triangle_h
 #include "shape.h"
 
-double kEpsilon =0.0001;
+#define EPSILON 0.001f
+
 struct Triangle : Shape{
     Vector v0;
     Vector v1;
@@ -52,7 +53,7 @@ double Triangle::intersects(const Ray& r) const
  
     // check if ray and plane are parallel ?
     double NdotRayDirection = N.dot(dir);
-    if (fabs(NdotRayDirection) < kEpsilon) // almost 0
+    if (fabs(NdotRayDirection) < EPSILON) // almost 0
         return false; // they are parallel so they don't intersect !
  
     // compute d parameter using equation 2

@@ -49,7 +49,7 @@ std::pair<Shape *, double> Tracer::getIntersection(const Ray &r) const {
 
 
 
-#define MAX_DEPTH 5
+#define MAX_DEPTH 3
 bool SAMPLING_LIGHT = true;
 Vector Tracer::getRadiance(const Ray &r, int depth) {
     if (depth > MAX_DEPTH) return Vector();
@@ -71,11 +71,12 @@ Vector Tracer::getRadiance(const Ray &r, int depth) {
     // TODO: R.R.
     
     // Work out the contribution from directly sampling the emitters
-    if (hitObj->m == LIGHT)
+    if (hitObj->material == LIGHT)
         return hitObj->color;
     
     Vector lightSampling = Vector(0);
-    if (SAMPLING_LIGHT && hitObj->m == DIFF) {
+    if (SAMPLING_LIGHT && hitObj->material == DIFF) {
+        
         // sample ALL lights
         for (Shape *light : scene) {
             // Skip any objects that don't emit light
@@ -91,7 +92,7 @@ Vector Tracer::getRadiance(const Ray &r, int depth) {
             if (light == lightHit.first) {
                 double wi = lightDirection.dot(norm);
                 if (wi > 0) {
-                    double radius = .1; // vip!
+                    double radius = .1 ; // vip!
                     double sin_a_max = radius / (lightSamplePos-hitPos).length();
                     double cos_a_max = sqrt(1 - sin_a_max*sin_a_max);
                     // https://schuttejoe.github.io/post/arealightsampling/
@@ -99,10 +100,10 @@ Vector Tracer::getRadiance(const Ray &r, int depth) {
                     double brdf = M_1_PI;
                     lightSampling += light->emit * wi * omega * brdf;
                 }
-            }else{
-                // there are objects in the way, AKA it's in the shadow
-//                return Vector(1,0,0);
             }
+//            else{ //there are objects in the way, AKA it's in the shadow
+//                return Vector(1,0,0);
+//            }
         }
     }
     
@@ -118,9 +119,9 @@ Vector Tracer::getRadiance(const Ray &r, int depth) {
     // d is random reflection ray
     Vector d = Vector();
     
-    if(hitObj->m == DIFF)
+    if(hitObj->material == DIFF)
         d = (u * cos(angle) * dist_cen + v * sin(angle) * dist_cen + w * sqrt(1 - dist_cen * dist_cen)).norm();
-    if(hitObj->m == REFL)
+    if(hitObj->material == REFL)
         // reflection
         d = r.direction - norm * 2 * norm.dot(r.direction);
     
